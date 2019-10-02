@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Maggie Betz Project 1</title>
+	<script src="https://d3js.org/d3.v3.min.js"></script>
+	<style>
+    	text {
+			font-family: Arial;
+			font-size: 15px;
+		}
+		.axis path, .axis line {
+			fill: none;
+			stroke: black;
+			shape-rendering: crispEdges;
+		}
+		.tick text {
+			fill: black;
+			font-size: 11px;
+		}
+
+		rect {
+			stroke: white;
+		}
+	</style>
+</head>
+<body>
+
+	<svg id="main" width="600" height="600">
+		<text id='label' x='20' y='20'>Maps</text>
+		<g transform="translate(30,40)">
+
+	<! --	<rect id="background" x="0" y="0" width="500" height="500" fill="lightgray"
+						style="stroke:black; stroke-width:2;" />  -- !>
+
+		<g id="streetbottom" />
+		<g id="streettop" />
+		<g id="pumps" />
+		<g id="deaths" />
+		<g id= "name_broadStreet" />
+
+		</g>
+	</svg>
+
+	<svg id="secondary" width="600" height="600">
+		<text id='label' x='20' y='20'>Charts</text>
+		<g transform="translate(30,40)">
+
+			<g id="deathchart" />
+
+		</g>
+	</svg>
+
+
+	<script>
+
+		var CHART_WIDTH = 500;
+		var CHART_HEIGHT = 500;
+
+
+
+		var energyProduction = [];
+		var deathdata = [];
+		var pumps = [];
+		var streetdata = [];
+		var chartdata = [];
+
+		var svg1 = d3.select('#main')
+		var svg2 = d3.select('#secondary')
+
+		var g_streetB = svg1.select('#streetbottom').append('g')
+		var g_streetU = svg1.select('#streettop').append('g')
+		var g_pumps = svg1.select('#pumps').append('g')
+		var g_deaths = svg1.select('#deaths').append('g')
+		var g_deathchart = svg2.select('#deathchart').append('g')
+	//	var g_name_broadStreet = svg.select('#name_broadStreet').append('g')
+
+
+      // then, create the zoom behvavior
+      var zoom = d3.behavior.zoom()
+        // only scale up, e.g. between 1x and 50x
+        .scaleExtent([1, 50])
+        .on("zoom", function() {
+          // the "zoom" event populates d3.event with an object that has
+          // a "translate" property (a 2-element Array in the form [x, y])
+          // and a numeric "scale" property
+          var e = d3.event,
+              // now, constrain the x and y components of the translation by the
+              // dimensions of the viewport
+              tx = Math.min(0, Math.max(e.translate[0], CHART_WIDTH - CHART_WIDTH * e.scale)),
+              ty = Math.min(0, Math.max(e.translate[1], CHART_HEIGHT - CHART_HEIGHT * e.scale));
+          // then, update the zoom behavior's internal translation, so that
+          // it knows how to properly manipulate it on the next movement
+          zoom.translate([tx, ty]);
+          // and finally, update the <g> element's transform attribute with the
+          // correct translation and scale (in reverse order)
+          g_streetB.attr("transform", [
+            "translate(" + [tx, ty] + ")",
+            "scale(" + e.scale + ")"
+          ].join(" "));
+
+					g_streetU.attr("transform", [
+						"translate(" + [tx, ty] + ")",
+						"scale(" + e.scale + ")"
+					].join(" "));
+
+					g_pumps.attr("transform", [
+						"translate(" + [tx, ty] + ")",
+						"scale(" + e.scale + ")"
+					].join(" "));
+
+					g_deaths.attr("transform", [
+						"translate(" + [tx, ty] + ")",
+						"scale(" + e.scale + ")"
+					].join(" "));
+        });
+
+      // then, call the zoom behavior on the svg element, which will add
+      // all of the necessary mouse and touch event handlers.
+      // remember that if you call this on the <g> element, the even handlers
+      // will only trigger when the mouse or touch cursor intersects with the
+      // <g> elements' children!
+      svg1.call(zoom);
+
+		function drawScatterPlot()
+			{
+				var xScale = d3.scale.linear();
+				var yScale = d3.scale.linear();
+
+				xScale.domain([3.3900001, 19.9120007]).range([0, CHART_WIDTH]);
+
+				yScale.domain( [3.2349999, 18.7250004] ).range( [CHART_HEIGHT,0] );
+
+	    		g_pumps.selectAll('circle')
+	    			.data(pumps)
+	    			.enter()
+	    			.append('circle')
+	    			.style('fill', 'black')
+	    			.attr('r', 10)
+	    			.attr('cx', function(d) { return xScale(d.x)})
+	    			.attr('cy', function(e){return yScale(e.y)});
+
+
+						g_deaths.selectAll('circle')
+							.data(deathdata)
+							.enter()
+							.append('circle')
+							.style('fill', 'red')
+							.style('stroke', 'black')
+							.attr('r', 2)
+							.attr('cx', function(d) { return xScale(d.x)})
+							.attr('cy', function(e){return yScale(e.y)});
+
+			}
+
+// Importing the csv file that contains the x and y coordinates, age, gender, and date of death for each subject
+// There are 571 subjects
+		d3.csv("deaths_age_sex_date.csv" , function(data) {
+		data.forEach(function(d) {
+			var object = {
+				x : d.x,
+				y : d.y ,
+				age: d.age ,
+				gender : d.gender ,
+				date : d.date,
+		 		time : +d.time
+			};
+		 deathdata.push(object)
+		});
+		console.log(data[0]);
+//		drawBarChart()
+
+});
+
+// Importing the csv file that contains pump x and y coordinates
+// There are 13 pumps subjects
+		d3.csv("pumps.csv" , function(data) {
+		data.forEach(function(d) {
+			var object = {
+				x : +d.x ,
+			 	y : +d.y
+			};
+
+			pumps.push(object)
+		});
+		console.log(data[0]);
+		drawScatterPlot();
+});
+
+
+// STREETS ON Maps
+function drawLineChart()
+{
+				maxValueX = d3.max(streetdata, function(d) {
+					return d3.max(d, function(d) {
+						return d["x"];
+					});
+				});
+
+				minValueX = d3.min(streetdata, function(d) {
+					return d3.min(d, function(d) {
+						return d["x"];
+					});
+				});
+
+				maxValueY = d3.max(streetdata, function(d) {
+					return d3.max(d, function(d) {
+						return d["y"];
+					});
+				});
+
+				minValueY = d3.min(streetdata, function(d) {
+					return d3.min(d, function(d) {
+						return d["y"];
+					});
+				});
+
+				var xScale = d3.scale.linear();
+				var yScale = d3.scale.linear();
+
+				xScale.domain([minValueX, maxValueX]).range([0, CHART_WIDTH]);
+
+				yScale.domain( [minValueY, maxValueY] ).range( [CHART_HEIGHT,0] );
+//pathGenerator makes one line that connects all data points
+	var pathGenerator = d3.svg.line()
+		.x(function(d) { return xScale(d.x); })
+		.y(function(d) { return yScale(d.y); });
+
+		var yAxis = d3.svg.axis()
+			.scale(yScale)
+			.orient('left');
+
+		g_streetB.selectAll('path').data(streetdata).enter().append('path')
+			.attr('d', function (d){return pathGenerator(d)} )
+			.style('fill', 'none')
+			.style('stroke', 'steelblue')
+			.style('stroke-linecap', "round")
+			.style('stroke-width', '5px')
+			;
+
+		g_streetU.selectAll('path').data(streetdata).enter().append('path')
+				.attr('d', function (d){return pathGenerator(d)} )
+				.style('fill', 'none')
+				.style('stroke', 'white')
+				.style('stroke-linecap', "round")
+				.style('stroke-width', '2px')
+				;
+
+}
+
+
+// Importing the json file that contains street x and y coordinates
+d3.json("streets.json", function(streets) {
+			streetdata = streets;
+			drawLineChart()
+});
+
+//Creat bar chart for deaths over the time period
+function drawBarChart()
+{
+	var BAR_WIDTH = 10;
+	var MAX_BAR_HEIGHT = 450;
+//THIS WILL NEED TO BE CHANGED so IT UPDATES
+	var maxValue = 150;
+
+/*	var xScale = d3.scale.linear();
+	var yScale = d3.scale.linear();
+
+	xScale.domain([0, 50]).range([0, 50]);
+
+	yScale.domain( [0, 150] ).range( [CHART_HEIGHT,0] );
+*/
+	/* var xAxis = d3.svg2.axis()
+			.scale(xScale)
+			.orient('bottom')
+			.tickFormat(function(d) { return "" + d; })
+			//takes a data value and tells what the tick should say. The '' '' forces it to return a string so there isn't a comma so its 1980 instead of 1.980 since its a date.
+
+		var yAxis = d3.svg2.axis()
+			.scale(yScale)
+			.orient('left');
+
+			g_deathchart.append('g')
+				.attr('class', 'axis')
+				.attr('transform', 'translate(0,' + CHART_HEIGHT + ')') //this attaches the axis to the bottom, not top of chart
+				.call(xAxis);
+
+			g_deathchart.append('g')
+				.attr('class', 'axis')
+				.call(yAxis);
+*/
+
+
+
+
+	g_deathchart.selectAll('rect')
+		.data(chartdata)
+		.enter().append('rect')
+
+		.attr('height', function(p) {return p.count*3; } )
+		.attr('width', BAR_WIDTH)
+		.attr('x', function(p) {return p.day*(BAR_WIDTH*1.5); })
+		.attr('y', function(p) {return MAX_BAR_HEIGHT-(p.count*3); });
+
+//return MAX_BAR_HEIGHT-(p.count/maxValue)*MAX_BAR_HEIGHT;
+}
+
+
+d3.csv("deathdays.csv" , function(data) {
+data.forEach(function(d) {
+	var object = {
+		date : d.date,
+		count : +d.count,
+		day : +d.day
+	};
+
+	chartdata.push(object)
+});
+console.log(data[0]);
+drawBarChart();
+});
+
+
+
+
+	</script>
+</body>
+
+
+</html>
