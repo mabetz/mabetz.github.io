@@ -4,9 +4,14 @@
 	<title>Maggie Betz Project 1</title>
 	<script src="https://d3js.org/d3.v3.min.js"></script>
 
+	<h1>1854 London Cholera Outbreak Map by Maggie Betz</h1>
+	<p style="text-align:left;"> <a href="https://khreda.com/teaching/2019/H517/syllabus.html">Documentation</a>  and      <a href="https://khreda.com/teaching/2019/H517/syllabus.html"> Video Tutorial</a> </p>
+
+
 	<p>
 	<input id="Reset" type="button" value="Reset">
 </p>
+
 	<style type="text/css">
     	text {
 			font-family: Arial;
@@ -27,12 +32,8 @@
 		}
 
 		svg {
-			border: solid 1px black;
+			border: solid 1px none;
 			display: block;
-		}
-
-		svg:nth-child(1){
-			float:right;
 		}
 
 		div {
@@ -82,7 +83,7 @@ pointer-events: none;
 <body>
 
 	<svg id="main" width="600" height="600">
-		<text id='label' x='20' y='20'>Maps</text>
+		<text id='label' x='20' y='20'></text>
 		<g transform="translate(30,40)">
 
 	<! --	<rect id="background" x="0" y="0" width="500" height="500" fill="lightgray"
@@ -107,13 +108,19 @@ pointer-events: none;
 		</g>
 	</svg>
 
-	<svg id="secondary" width="700" height="1200" transform="translate(600,-600)">
-		<text id='label' x='20' y='20'>Charts</text>
+	<svg id="secondary" width="800" height="800" transform="translate(600,-600)">
+		<text id='label' x='300' y='20' font-weight="bold">Deaths Distributed by day</text>
+		<text id="label" x="-250" y="45" transform="rotate(-90)">Number of Deaths</text>
+		<text id='label' x='380' y='430' font-weight="bold">Deaths Distributed by Age</text>
+		<text id="label" x="-600" y="75" transform="rotate(-90)">Number of Deaths</text>
+		<text id='label' x='50' y='430'font-weight="bold">Deaths Distributed by Gender</text>
+		<text id="label" x="-600" y="335" transform="rotate(-90)">Number of Deaths</text>
+
 		<g transform="translate(30,40)" >
 
-			<g id="deathchart" />
-			<g id="genderchart" transform="translate(0,550)" />
-			<g id="agechart" transform="translate(250,550)" />
+			<g id="deathchart" transform="translate(50,0)"/>
+			<g id="genderchart" transform="translate(90,400)" />
+			<g id="agechart" transform="translate(350,400)" />
 
 			<div id="tooltip1" class="hidden" transform="translate(30,40)">
 		    <p><span id="value"></span></p>
@@ -581,7 +588,7 @@ d3.json("streets.json", function(streets) {
 function drawBarChart()
 {
 	var BAR_WIDTH = 10;
-	var MAX_BAR_HEIGHT = 450;
+	var MAX_BAR_HEIGHT = 300;
 //THIS WILL NEED TO BE CHANGED so IT UPDATES
 	var maxValue = 150;
 
@@ -678,7 +685,7 @@ var ticks = [0, 3, 6 ,9]
 					//Update the tooltip position and value
 					d3.select("#tooltip1")
 					.transition().duration(200)
-					.style("left", 700+ "px")
+					.style("left", 770+ "px")
 					.style("top", 200+ "px")
 					.select("#value")
 					.text( tempdate + " deaths");
@@ -711,7 +718,7 @@ var ticks = [0, 3, 6 ,9]
 function drawGenderBarChart()
 {
 	var BAR_WIDTH = 30;
-	var MAX_BAR_HEIGHT = 250;
+	var MAX_BAR_HEIGHT = 200;
 //THIS WILL NEED TO BE CHANGED so IT UPDATES
 	var maxValue = 150;
 
@@ -764,6 +771,38 @@ var gendercount = d3.nest()
 		.attr('width', BAR_WIDTH)
 		.attr('x', function(p, i) {return (gendercount[i].key)*(BAR_WIDTH*1.5); })
 		.attr('y', function(p,i) {return (yScale((gendercount[i].values.count))); })
+		.on("mouseover", function(){
+					d3.select(this)
+					.transition().duration(200).attr("fill", "yellow")
+
+				//	var xPosition = parseFloat(d3.select(this).attr("x"))+700;
+				//	var yPosition = parseFloat(d3.select(this).attr("y"))+700;
+
+					var reverse_barScale = d3.scale.linear()
+									.domain( [0, MAX_BAR_HEIGHT] ).range( [0, 300] );
+
+					var tempdate = (reverse_barScale(parseFloat(d3.select(this).attr("height"))))
+					var decformat = d3.format(".0f")
+					//Update the tooltip position and value
+					d3.select("#tooltip1")
+					.transition().duration(200)
+					.style("left", 820+ "px")
+					.style("top", 600+ "px")
+					.select("#value")
+					.text( decformat(tempdate) + " deaths");
+
+					//Show the tooltip
+					d3.select("#tooltip1").classed("hidden", false)
+
+				})
+		.on("mouseout", function(){
+					d3.select(this)
+					.transition().
+					duration(1000).
+					attr("fill", "black")
+
+					d3.select("#tooltip1").classed("hidden", true);
+				})
 /*
 		.on("mouseover", function(){
 					d3.select(this)
@@ -834,6 +873,38 @@ var agecount = d3.nest()
 		.attr('width', BAR_WIDTH)
 		.attr('x', function(p, i) {return (agecount[i].key)*(BAR_WIDTH*1.5); })
 		.attr('y', function(p,i) {return (yScale((agecount[i].values.count))); })
+		.on("mouseover", function(){
+					d3.select(this)
+					.transition().duration(200).attr("fill", "yellow")
+
+				//	var xPosition = parseFloat(d3.select(this).attr("x"))+700;
+				//	var yPosition = parseFloat(d3.select(this).attr("y"))+700;
+
+					var reverse_barScale = d3.scale.linear()
+									.domain( [0, MAX_BAR_HEIGHT] ).range( [0, 300] );
+
+					var tempdate = (reverse_barScale(parseFloat(d3.select(this).attr("height"))))
+					var decformat = d3.format(".0f")
+					//Update the tooltip position and value
+					d3.select("#tooltip1")
+					.transition().duration(200)
+					.style("left", 1170+ "px")
+					.style("top", 600+ "px")
+					.select("#value")
+					.text( decformat(tempdate) + " deaths");
+
+					//Show the tooltip
+					d3.select("#tooltip1").classed("hidden", false)
+
+				})
+		.on("mouseout", function(){
+					d3.select(this)
+					.transition().
+					duration(1000).
+					attr("fill", "black")
+
+					d3.select("#tooltip1").classed("hidden", true);
+				})
 
 }
 
@@ -856,6 +927,21 @@ drawBarChart();
 function unlink(l){
 	var resetmapdata= chartdata;
 
+	scale = 1.0;
+g_streetB.attr("transform", "translate(0,0)scale(1,1)");
+g_streetU.attr("transform", "translate(0,0)scale(1,1)");
+g_pumps.attr("transform", "translate(0,0)scale(1,1)");
+g_deaths.attr("transform", "translate(0,0)scale(1,1)");
+g_name_broadStreet.attr("transform", "translate(0,0)scale(1,1)");
+g_name_marshallStreet.attr("transform", "translate(0,0)scale(1,1)");
+g_name_regentStreet.attr("transform", "translate(0,0)scale(1,1)");
+g_name_oxfordStreet.attr("transform", "translate(0,0)scale(1,1)");
+g_name_workHouse.attr("transform", "translate(0,0)scale(1,1)");
+g_name_brewery.attr("transform", "translate(0,0)scale(1,1)");
+
+  zoom.scale(scale)
+      .translate([0,0]);
+
 	g_deaths.selectAll('circle')
 		.transition()
 				.duration(1000)
@@ -865,12 +951,70 @@ function unlink(l){
 				.attr("stroke-width","0.5px")
 				.attr("opacity",1)
 
+
+				var genderdata = deathdata;
+				var gendercount = d3.nest()
+					.key(function (d) {return d.gender;})
+					.rollup(function(v) { return {
+				    count: v.length
+				  }; })
+				  .entries(genderdata);
+					//console.log(JSON.stringify(gendercount));
+					var deathtotal =300;
+					var BAR_WIDTH = 30;
+						var MAX_BAR_HEIGHT = 200;
+						var xScale = d3.scale.ordinal()
+								.domain(["Male ", "Female"]).rangePoints([0, 2*(BAR_WIDTH*1.5)]);
+
+						var yScale = d3.scale.linear()
+								.domain( [0, deathtotal] ).range( [MAX_BAR_HEIGHT,0] );
+						var barScale = d3.scale.linear()
+										.domain( [0, deathtotal] ).range( [0, MAX_BAR_HEIGHT] );
+					g_genderchart.selectAll('rect')
+							.transition()
+							.duration(1000)
+						.attr('height', function(p,i) {return barScale((gendercount[i].values.count)); } )
+						.attr('width', BAR_WIDTH)
+						.attr('x', function(p, i) {return (gendercount[i].key)*(BAR_WIDTH*1.5); })
+						.attr('y', function(p,i) {return (yScale((gendercount[i].values.count))); })
+
+						//Reset age chartday
+						var ageyScale = d3.scale.linear()
+								.domain( [0, 300] ).range( [200,0] );
+						var agebarScale = d3.scale.linear()
+										.domain( [0, 300] ).range( [0, 200] );
+
+			var agecount = d3.nest()
+							.key(function (d) {return d.age;})
+							.rollup(function(v) { return {
+								count: v.length
+							}; })
+							.entries(deathdata);
+							//console.log(JSON.stringify(gendercount));
+
+
+							g_agechart.selectAll('rect')
+							.transition()
+									.duration(1000)
+
+								.attr('height', function(p,i) {return agebarScale((agecount[i].values.count)); } )
+								.attr('width', 20)
+								.attr('x', function(p, i) {return (agecount[i].key)*(20*1.5); })
+								.attr('y', function(p,i) {return (ageyScale((agecount[i].values.count))); })
+
+
+
+
+
+
 }
 
 function maplink(link){
 				selected_people = deathdata.filter(function(d) {   return d.time == link.day})
 				unselected_people = deathdata.filter(function(d) {   return d.time != link.day})
 				console.log(selected_people)
+
+
 
 				g_deaths.selectAll('circle')
 					.transition()
@@ -890,7 +1034,7 @@ function maplink(link){
 
 						var genderdata = unselected_people;
 						var BAR_WIDTH = 30;
-							var MAX_BAR_HEIGHT = 450;
+							var MAX_BAR_HEIGHT = 200;
 
 						var gendercount = d3.nest()
 							.key(function (d) {return d.gender;})
@@ -927,7 +1071,7 @@ function maplink(link){
 								.attr('x', function(p, i) {return (gendercount[i].key)*(BAR_WIDTH*1.5); })
 								.attr('y', function(p,i) {return (yScale((gendercount[i].values.count))); })
 
-
+/*
 							g_genderchart.select('.y.axis')
 								.transition()
 								.duration(1000)
@@ -939,7 +1083,7 @@ function maplink(link){
 								.attr('class', 'axis')
 								.call(yAxis);
 
-
+*/
 								var ageyScale = d3.scale.linear()
 										.domain( [0, 300] ).range( [200,0] );
 								var agebarScale = d3.scale.linear()
