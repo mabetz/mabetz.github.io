@@ -36,6 +36,7 @@
 			display: block;
 		}
 
+
 		div {
 					width: 1500 px;
 					border: solid 1px none;
@@ -82,6 +83,7 @@ pointer-events: none;
 </head>
 <body>
 
+<div>
 	<svg id="main" width="600" height="600">
 		<text id='label' x='20' y='20'></text>
 		<g transform="translate(30,40)">
@@ -109,7 +111,7 @@ pointer-events: none;
 	</svg>
 
 	<svg id="secondary" width="800" height="800" transform="translate(600,-600)">
-		<text id='label' x='300' y='20' font-weight="bold">Deaths Distributed by day</text>
+		<text id='label' x='300' y='20' font-weight="bold">Deaths Distributed by Day</text>
 		<text id="label" x="-250" y="45" transform="rotate(-90)">Number of Deaths</text>
 		<text id='label' x='380' y='430' font-weight="bold">Deaths Distributed by Age</text>
 		<text id="label" x="-600" y="75" transform="rotate(-90)">Number of Deaths</text>
@@ -130,6 +132,23 @@ pointer-events: none;
 	</svg>
 
 
+		<svg id="third" width="600" height="200" transform="translate(0,-800)">
+			<text id='label' x='50' y='20' font-weight="bold">Legend</text>
+			<text id='label' x='100' y='50' font-weight="normal">Death</text>
+			<text id='label' x='100' y='75' font-weight="normal">Water Pump</text>
+			<text id='label' x='100' y='100' font-weight="normal">Building</text>
+
+
+			<g transform="translate(30,40)" >
+			<g id="legend_death" transform="translate(50,0)"/>
+			<g id="legend_pump" transform="translate(50,0)"/>
+			<g id="legend_building" transform="translate(50,0)"/>
+
+			</g>
+		</svg>
+
+
+</div>
 	<script>
 
 		var CHART_WIDTH = 500;
@@ -145,6 +164,7 @@ pointer-events: none;
 
 		var svg1 = d3.select('#main')
 		var svg2 = d3.select('#secondary')
+		var svg3 = d3.select('#third')
 
 		var g_streetB = svg1.select('#streetbottom').append('g')
 		var g_streetU = svg1.select('#streettop').append('g')
@@ -159,6 +179,40 @@ pointer-events: none;
 		var g_name_oxfordStreet = svg1.select('#name_oxfordStreet').append('g')
 		var g_name_workHouse = svg1.select('#name_workHouse').append('g')
 		var g_name_brewery = svg1.select('#name_brewery').append('g')
+		var g_legend_death = svg3.select('#legend_death').append('g')
+		var g_legend_pump = svg3.select('#legend_pump').append('g')
+		var g_legend_building = svg3.select('#legend_building').append('g')
+
+var legdata=[0,0]
+
+g_legend_death.selectAll("circle")
+    .data(legdata)
+    .enter()
+    .append("circle")
+    .attr("cx", -5)
+    .attr("cy", 30)
+    .attr("r",5)
+    .attr("stroke","black")
+    .attr("fill","black")
+g_legend_pump.selectAll("circle")
+    .data(legdata)
+    .enter()
+    .append("circle")
+    .attr("cx", -5)
+    .attr("cy", 5)
+    .attr("r",4)
+    .attr("stroke","black")
+    .attr("fill","red")
+		g_legend_building.selectAll("rect")
+		    .data(legdata)
+		    .enter()
+		    .append("rect")
+		      .attr("x", -25)
+		      .attr("y", 45)
+		      .attr("stroke","black")
+		      .attr("width",30)
+		      .attr("height", 15)
+		      .attr("fill","gray")
 
 		d3.select("#Reset")
 	    .on("click", unlink)
@@ -1112,20 +1166,10 @@ function maplink(link){
 										.attr('width', 20)
 										.attr('x', function(p, i) {return (agecount[i].key)*(20*1.5); })
 										.attr('y', function(p,i) {return (ageyScale((agecount[i].values.count))); })
-
-
 }
 
 
 
-
-	</script>
-
-<p> <a href="https://khreda.com/teaching/2019/H517/syllabus.html">Documentation</a> </p>
-<p> <a href="https://khreda.com/teaching/2019/H517/syllabus.html">Video Tutorial</a> </p>
-
-<p> </p>
-</body>
-
-
+		</script>
+	</body>
 </html>
