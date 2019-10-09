@@ -486,7 +486,7 @@ var oxford=[[6.6, 15.3]];
 	    			.enter()
 	    			.append('circle')
 	    			.style('fill', 'black')
-	    			.attr('r', 10)
+	    			.attr('r', 6.5)
 	    			.attr('cx', function(d) { return xScale(d.x)})
 	    			.attr('cy', function(e){return yScale(e.y)})
 						.on("mouseover", function(d){
@@ -857,6 +857,7 @@ var gendercount = d3.nest()
 
 					d3.select("#tooltip1").classed("hidden", true);
 				})
+			.on("click", genderlink)
 /*
 		.on("mouseover", function(){
 					d3.select(this)
@@ -959,6 +960,8 @@ var agecount = d3.nest()
 
 					d3.select("#tooltip1").classed("hidden", true);
 				})
+			.on("click", agelink)
+
 
 }
 
@@ -1168,6 +1171,54 @@ function maplink(link){
 										.attr('y', function(p,i) {return (ageyScale((agecount[i].values.count))); })
 }
 
+
+function genderlink(link){
+				selected_people = deathdata.filter(function(d) {   return d.gender == link.key})
+				unselected_people = deathdata.filter(function(d) {   return d.gender != link.key})
+				console.log(selected_people)
+
+
+				g_deaths.selectAll('circle')
+					.transition()
+              .duration(1000)
+              .attr("r", 2.5)
+              .attr("fill","red")
+              .attr("stroke","gray")
+              .attr("stroke-width","0.5px")
+              .attr("opacity",1)
+					.filter(function(d) {   return d.gender != link.key})
+						.attr('r', 0.5)
+						.attr('fill', 'gray')
+						.attr("stroke","gray")
+						.attr("stroke-width","2px")
+						.attr("opacity", .2);
+
+			}
+
+
+
+			function agelink(link){
+							selected_people = deathdata.filter(function(d) {   return d.age == link.key})
+							unselected_people = deathdata.filter(function(d) {   return d.age != link.key})
+							console.log(selected_people)
+
+
+							g_deaths.selectAll('circle')
+								.transition()
+			              .duration(1000)
+			              .attr("r", 2.5)
+			              .attr("fill","red")
+			              .attr("stroke","gray")
+			              .attr("stroke-width","0.5px")
+			              .attr("opacity",1)
+								.filter(function(d) {   return d.age != link.key})
+									.attr('r', 0.5)
+									.attr('fill', 'gray')
+									.attr("stroke","gray")
+									.attr("stroke-width","2px")
+									.attr("opacity", .2);
+
+						}
 
 
 		</script>
