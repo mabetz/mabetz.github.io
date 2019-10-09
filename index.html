@@ -88,9 +88,6 @@ pointer-events: none;
 		<text id='label' x='20' y='20'></text>
 		<g transform="translate(30,40)">
 
-	<! --	<rect id="background" x="0" y="0" width="500" height="500" fill="lightgray"
-						style="stroke:black; stroke-width:2;" />  -- !>
-
 		<g id="streetbottom" />
 		<g id="streettop" />
 		<g id="pumps" />
@@ -287,11 +284,7 @@ g_legend_pump.selectAll("circle")
 
         });
 
-      // then, call the zoom behavior on the svg element, which will add
-      // all of the necessary mouse and touch event handlers.
-      // remember that if you call this on the <g> element, the even handlers
-      // will only trigger when the mouse or touch cursor intersects with the
-      // <g> elements' children!
+
       svg1.call(zoom);
 
 			var xScale = d3.scale.linear();
@@ -306,11 +299,11 @@ var broad=[[8.6, 8.6]];
 						.enter()
 						.append("text")
 						.attr("x", function(d){
-							console.log(xScale(d[0]));
+							//console.log(xScale(d[0]));
 								return xScale(d[0]);
 						})
 						.attr("y", function(d){
-							console.log(yScale(d[1]));
+							//console.log(yScale(d[1]));
 								return yScale(d[1]);
 						})
 						.text("B R O A D "   + " __  "  + "  S T R E E T")
@@ -326,13 +319,13 @@ var marshall=[[12, 22.08]];
 												.enter()
 												.append("text")
 												.attr("x", function(d){
-													console.log(xScale(d[0]));
+													//console.log(xScale(d[0]));
 														var x1=xScale(d[0]);
 														return xScale(d[0]);
-														console.log(xScale(d[0]));
+													//	console.log(xScale(d[0]));
 												})
 												.attr("y", function(d){
-													console.log(yScale(d[1]));
+													//console.log(yScale(d[1]));
 														var y1=xScale(d[1]);
 														return yScale(d[1]);
 												})
@@ -349,13 +342,13 @@ var marshall=[[12, 22.08]];
 																								.enter()
 																								.append("text")
 																								.attr("x", function(d){
-																									console.log(xScale(d[0]));
+																								//	console.log(xScale(d[0]));
 																										var x1=xScale(d[0]);
 																										return xScale(d[0]);
-																										console.log(xScale(d[0]));
+																									//	console.log(xScale(d[0]));
 																								})
 																								.attr("y", function(d){
-																									console.log(yScale(d[1]));
+																								//	console.log(yScale(d[1]));
 																										var y1=xScale(d[1]);
 																										return yScale(d[1]);
 																								})
@@ -372,11 +365,11 @@ var oxford=[[6.6, 15.3]];
 						.enter()
 						.append("text")
 						.attr("x", function(d){
-							console.log(xScale(d[0]));
+							//console.log(xScale(d[0]));
 								return xScale(d[0]);
 						})
 						.attr("y", function(d){
-							console.log(yScale(d[1]));
+						//	console.log(yScale(d[1]));
 								return yScale(d[1]);
 						})
 						.text("O X F O R D "   + " __  "  + "  S T R E E T")
@@ -546,7 +539,7 @@ var oxford=[[6.6, 15.3]];
 			};
 		 deathdata.push(object)
 		});
-		console.log(data[0]);
+		//console.log(data[0]);
 //		drawBarChart()
 	drawGenderBarChart()
 	drawAgeBarChart()
@@ -564,7 +557,7 @@ var oxford=[[6.6, 15.3]];
 
 			pumps.push(object)
 		});
-		console.log(data[0]);
+		//console.log(data[0]);
 		drawScatterPlot();
 });
 
@@ -572,38 +565,7 @@ var oxford=[[6.6, 15.3]];
 // STREETS ON Maps
 function drawLineChart()
 {
-	/*			maxValueX = d3.max(streetdata, function(d) {
-					return d3.max(d, function(d) {
-						return d["x"];
-					});
-				});
 
-				minValueX = d3.min(streetdata, function(d) {
-					return d3.min(d, function(d) {
-						return d["x"];
-					});
-				});
-
-				maxValueY = d3.max(streetdata, function(d) {
-					return d3.max(d, function(d) {
-						return d["y"];
-					});
-				});
-
-				minValueY = d3.min(streetdata, function(d) {
-					return d3.min(d, function(d) {
-						return d["y"];
-					});
-				});
-
-				var xScale = d3.scale.linear();
-				var yScale = d3.scale.linear();
-
-				xScale.domain([minValueX, maxValueX]).range([0, CHART_WIDTH]);
-
-				yScale.domain( [minValueY, maxValueY] ).range( [CHART_HEIGHT,0] );
-
-				*/
 //pathGenerator makes one line that connects all data points
 	var pathGenerator = d3.svg.line()
 		.x(function(d) { return xScale(d.x); })
@@ -648,8 +610,8 @@ function drawBarChart()
 
 	var chartday = chartdata;
 	var chartlabel = function(d,i){return chartday[i].date;}
-	console.log(chartday[1].day)
-	console.log(chartlabel)
+//	console.log(chartday[1].day)
+	//console.log(chartlabel)
 
 	var xScale = d3.scale.ordinal()
 			.domain(["Aug 19", "Aug 20", "Aug 21", "Aug 22", "Aug 23",
@@ -662,9 +624,6 @@ function drawBarChart()
                     "Sep 23", "Sep 24", "Sep 25", "Sep 26", "Sep 27",
                     "Sep 28", "Sep 29"," ", " "]).rangePoints([0, 42*(BAR_WIDTH*1.5)]);
 
-	//		var xScale = d3.scale.ordinal()
-		//			.domain(data(chartdata).attr(function(p) {return p.date})).range([0, 42*BAR_WIDTH*1.5]);
-
 	var yScale = d3.scale.linear()
 			.domain( [0, 150] ).range( [MAX_BAR_HEIGHT,0] );
 	var barScale = d3.scale.linear()
@@ -672,16 +631,9 @@ function drawBarChart()
 
 
 
-var ticks = [0, 3, 6 ,9]
-
 	 var xAxis = d3.svg.axis()
 			.scale(xScale)
 			.orient('bottom')
-		//	.tickValues(ticks)
-		//	.tickFormat(chartlabel)
-
-			//.tickFormat(function( d) { return "" + d; })
-			//takes a data value and tells what the tick should say. The '' '' forces it to return a string so there isn't a comma so its 1980 instead of 1.980 since its a date.
 
 		var yAxis = d3.svg.axis()
 			.scale(yScale)
@@ -722,9 +674,6 @@ var ticks = [0, 3, 6 ,9]
 					d3.select(this)
 					.transition().duration(200).attr("fill", "yellow")
 
-				//	var xPosition = parseFloat(d3.select(this).attr("x"))+700;
-				//	var yPosition = parseFloat(d3.select(this).attr("y"))+700;
-
 					var reverse_barScale = d3.scale.linear()
 									.domain( [0, MAX_BAR_HEIGHT] ).range( [0, 150] );
 					var reverse_yScale = d3.scale.linear()
@@ -758,12 +707,6 @@ var ticks = [0, 3, 6 ,9]
 				})
 			.on("click", maplink)
 
-						/*function(){
-								d3.select(this)
-								.transition().
-								duration(1000)
-								.attr("fill", "purple")})
-								*/
 
 }
 
@@ -829,9 +772,6 @@ var gendercount = d3.nest()
 					d3.select(this)
 					.transition().duration(200).attr("fill", "yellow")
 
-				//	var xPosition = parseFloat(d3.select(this).attr("x"))+700;
-				//	var yPosition = parseFloat(d3.select(this).attr("y"))+700;
-
 					var reverse_barScale = d3.scale.linear()
 									.domain( [0, MAX_BAR_HEIGHT] ).range( [0, 300] );
 
@@ -858,17 +798,7 @@ var gendercount = d3.nest()
 					d3.select("#tooltip1").classed("hidden", true);
 				})
 			.on("click", genderlink)
-/*
-		.on("mouseover", function(){
-					d3.select(this)
-					.transition().duration(1000).attr("fill", "yellow")})
-		.on("mouseout", function(){
-					d3.select(this)
-					.transition().
-					duration(1000).
-					attr("fill", "black")})
-			.on("click", maplink)
-*/
+
 
 }
 
@@ -932,9 +862,6 @@ var agecount = d3.nest()
 					d3.select(this)
 					.transition().duration(200).attr("fill", "yellow")
 
-				//	var xPosition = parseFloat(d3.select(this).attr("x"))+700;
-				//	var yPosition = parseFloat(d3.select(this).attr("y"))+700;
-
 					var reverse_barScale = d3.scale.linear()
 									.domain( [0, MAX_BAR_HEIGHT] ).range( [0, 300] );
 
@@ -977,7 +904,7 @@ data.forEach(function(d) {
 
 	chartdata.push(object)
 });
-console.log(data[0]);
+//console.log(data[0]);
 drawBarChart();
 });
 
@@ -1069,7 +996,8 @@ g_name_brewery.attr("transform", "translate(0,0)scale(1,1)");
 function maplink(link){
 				selected_people = deathdata.filter(function(d) {   return d.time == link.day})
 				unselected_people = deathdata.filter(function(d) {   return d.time != link.day})
-				console.log(selected_people)
+
+				//console.log(selected_people)
 
 
 
@@ -1128,19 +1056,7 @@ function maplink(link){
 								.attr('x', function(p, i) {return (gendercount[i].key)*(BAR_WIDTH*1.5); })
 								.attr('y', function(p,i) {return (yScale((gendercount[i].values.count))); })
 
-/*
-							g_genderchart.select('.y.axis')
-								.transition()
-								.duration(1000)
-								.call(yAxis)
 
-
-
-						g_genderchart.append('g')
-								.attr('class', 'axis')
-								.call(yAxis);
-
-*/
 								var ageyScale = d3.scale.linear()
 										.domain( [0, 300] ).range( [200,0] );
 								var agebarScale = d3.scale.linear()
@@ -1175,7 +1091,7 @@ function maplink(link){
 function genderlink(link){
 				selected_people = deathdata.filter(function(d) {   return d.gender == link.key})
 				unselected_people = deathdata.filter(function(d) {   return d.gender != link.key})
-				console.log(selected_people)
+				//console.log(selected_people)
 
 
 				g_deaths.selectAll('circle')
@@ -1200,7 +1116,7 @@ function genderlink(link){
 			function agelink(link){
 							selected_people = deathdata.filter(function(d) {   return d.age == link.key})
 							unselected_people = deathdata.filter(function(d) {   return d.age != link.key})
-							console.log(selected_people)
+							//console.log(selected_people)
 
 
 							g_deaths.selectAll('circle')
