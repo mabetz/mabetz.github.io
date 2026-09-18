@@ -1,0 +1,79 @@
+<a id="real-world-querying-challenge"></a>
+
+# 6. Real-World Querying Challenge
+
+We encourage you to take what you’ve learned today and continue
+practicing with the below SQL databases throughout the remainder of the
+conference. Maggie (betz(AT)purdue.edu) and Fulya
+(fgokalp(AT)purdue.edu) will be present at the conference through Friday
+if you have questions.
+
+We will remove users from Anvil on Monday so please be sure to download
+any notes, documents, or files by then.
+
+<a id="_other_sql_databases_already_on_anvil"></a>
+
+## Other SQL databases already on Anvil
+
+Recommendations for practice:
+
+- If you are looking at practicing joining tables, the
+  `./forest/SQLite_FIADB_ENTIRE.db` has 105 tables!
+
+- If you are looking to practice with geospatial data or a database with
+  many entries the NYC Taxi Cab data has geographical coordinates and 90
+  million rows! It only has 1 table though. `./taxi/taxi.db` or
+  `./taxi/taxi_sample.db`
+
+- If you are looking to strike a balance between the above, we recommend
+  the Bay Area Bike Share which has 4 tables, geographical coordinates,
+  and weather data.
+  `./bay_area_bike_share/kaggle/bay_area_bike_share.db`
+
+Below are various databases that are available on Anvil.
+
+```
+./goodreads/kevin_archive/my.db
+
+./flights/subset/flights_sample.db
+
+./amazon/tracks.db
+
+./movies_and_tv/imdb2024.db
+
+./movies_and_tv/imdb.db
+
+./taxi/taxi.db
+
+./taxi/taxi_sample.db
+
+./whin/whin.db
+
+./whin/db/whin.db
+
+./forest/SQLite_FIADB_ENTIRE.db
+
+./lahman/script/lahman2023.db
+
+./lahman/lahman.db
+
+./bay_area_bike_share/kaggle/bay_area_bike_share.db
+```
+
+<a id="_additional_resources"></a>
+
+## Additional resources
+
+- You can find more information about SQL commands in the [SQLite
+  documentation](https://www.sqlite.org/lang.html).
+
+- The Data Mine, Example Book, dedicated SQL page:
+  <a href="https://the-examples-book.com/tools/sql/"
+  class="bare">https://the-examples-book.com/tools/sql/</a>
+
+- The following tutorial provides a step-by-step guide on how to
+  download and use SQLite tools on your computer:
+  <a href="https://www.sqlitetutorial.net/download-install-sqlite/"
+  class="bare">https://www.sqlitetutorial.net/download-install-sqlite/</a>
+
+Last updated 2026-09-18 19:28:25 UTC
