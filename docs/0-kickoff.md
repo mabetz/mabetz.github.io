@@ -30,6 +30,8 @@ Wednesday, November 12, 2025, 8:00 AM to noon
 
 <img src="sql_meme.jpg" width="792" height="500" alt="Meme" />
 
+![GitHub Pages](_images/sql_meme.jpg)
+
 Figure 1. SQL Meme
 <a id="_introductions"></a>
 
@@ -38,8 +40,6 @@ Figure 1. SQL Meme
 - Fulya (fgokalp(AT)purdue.edu)
 
 - Maggie (betz(AT)purdue.edu)
-
-- Kali
 
 - Participants
 
@@ -82,6 +82,8 @@ the data.
 
 <img src="figure14.webp" width="792" height="500"
 alt="Database diagram from https://dbdiagram.io" />
+
+![GitHub Pages](_images/figure14.webp)
 
 Figure 2. Database diagram from
 <a href="https://dbdiagram.io" class="bare">https://dbdiagram.io</a>

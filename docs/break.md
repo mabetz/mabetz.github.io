@@ -8,9 +8,12 @@
 
 <img src="food.png" width="792" height="500" alt="Meme" />
 
+![GitHub Pages](_images/food.png)
+
 Figure 1. Eliminate one food group.
 
 <img src="dog.png" width="792" height="500" alt="Meme" />
+
 
 Figure 2. How would a dog wear pants?
 <a id="_charty_party"></a>
