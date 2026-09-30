@@ -1,21 +1,16 @@
-<a id="applied-sql-for-data-analysis-a-practical-introduction-to-a-key-data-skill"></a>
 
 # Applied SQL for Data Analysis: A Practical Introduction to a Key Data Skill
 
-This page was prepared for the 2025 Women in Statistics and Data Science
+This page was prepared for the 2026 Women in Statistics and Data Science
 conference. You are welcome to use it to practice working with SQLite.
 
-<a id="_course_logistics"></a>
 
 ## Course Logistics
 
-- Wednesday, November 12, 8 AM to noon
+- Wednesday, October 28, 2026, 8:00 AM to noon
 
-- Link: <a
-  href="https://ww3.aievolution.com/AMSTATevents/index.cfm?do=ev.viewEv&amp;ev=4915"
-  class="bare">https://ww3.aievolution.com/AMSTATevents/index.cfm?do=ev.viewEv&amp;ev=4915</a>
+- Link: https://ww2.amstat.org/meetings/wsds/2026/OnlineProgram/session.cfm?id=202371
 
-<a id="_course_description"></a>
 
 ## Course Description
 
@@ -27,8 +22,6 @@ and joining multiple tables for exploratory analysis. Participants will
 work with real-world datasets to apply their skills in context, gaining
 hands-on experience that supports both immediate application and
 long-term growth in data-focused roles.
-
-Last updated 2026-09-18 19:25:29 UTC
 
 
 //JupyterLab on https://www.rcac.purdue.edu/compute/anvil[Anvil], a supercomputer supported by the National Science Foundation, will be used for this workshop.

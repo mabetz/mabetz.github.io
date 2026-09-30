@@ -71,7 +71,7 @@ The video below shows you the steps to login to DataMine Notebook.
 
 ## Step 4: Verify your information on the Hub
 
-Within 1-2 busniess days after your survey submission, you should
+Within 1-2 business days after your survey submission, you should
 receive an email invitation (check your spam) from The Data Mine’s Hub.
 If needed, you can resend the invitation to yourself by entering the
 email here: <a href="https://hub.datamine.purdue.edu/"
@@ -91,4 +91,3 @@ checkmark on TDMHub. This requirement doesn’t apply to you.
 If you encounter any issues during this process, don’t hesitate to reach
 out to kqlacy(AT)purdue.edu.
 
-Last updated 2026-09-18 19:29:02 UTC

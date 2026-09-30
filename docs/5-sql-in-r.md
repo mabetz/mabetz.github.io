@@ -88,4 +88,4 @@ ggplot(tarantino_types, aes(x = reorder(type, count), y = count)) +
 |-----------|------------------------------------|
 | Important | Maggie still needs to add content. |
 
-Last updated 2026-09-18 19:27:28 UTC
+

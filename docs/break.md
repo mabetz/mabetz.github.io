@@ -1,8 +1,6 @@
-<a id="brain-breaks"></a>
 
 # Brain Breaks
 
-<a id="_4_best_corners"></a>
 
 ## 4 (Best) Corners
 
@@ -13,11 +11,12 @@
 Figure 1. Eliminate one food group.
 
 <img src="dog.png" width="792" height="500" alt="Meme" />
+
 ![GitHub Pages](_images/dog.png)
 
 
 Figure 2. How would a dog wear pants?
-<a id="_charty_party"></a>
+
 
 ## Charty Party
 
@@ -38,7 +37,7 @@ Similar to Apples to Apples or Cards Against Humanity​
 
 - Players may pick up new orange cards to total 7​
 
-<a id="_10_similarities"></a>
+
 
 ## 10 Similarities
 
@@ -58,13 +57,13 @@ Students work in teams to find 10 things they have in common.
 - When the time is up, teams can come back together and share out the
   most interesting thing they have in common.
 
-<a id="_what_cute_animal_are_you_today"></a>
+
 
 ## What cute animal are you today?
 
 <img src="cute-animals.jpg" width="792" height="500" alt="Meme" />
-![GitHub Pages](_images/cute-animals.jpg)
 
+![GitHub Pages](_images/cute-animals.jpg)
 
 Figure 3. What cute animal are you today?
 

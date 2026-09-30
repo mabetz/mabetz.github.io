@@ -1,19 +1,16 @@
-<a id="kick-off"></a>
 
 # 0. Kick-off
 
-<a id="_welcome"></a>
 
 ## Welcome!
 
 Welcome to the half day short course titled *Applied SQL for Data
 Analysis: A Practical Introduction to a Key Data Skill*.
 
-<a id="_agenda"></a>
 
 ## Agenda
 
-Wednesday, November 12, 2025, 8:00 AM to noon
+Wednesday, October 28, 2026, 8:00 AM to noon
 
 | Time                | Minutes | Topic                             |
 |---------------------|---------|-----------------------------------|
@@ -32,7 +29,7 @@ Wednesday, November 12, 2025, 8:00 AM to noon
 ![GitHub Pages](_images/sql_meme.jpg)
 Figure 1. SQL Meme
 
-<a id="_introductions"></a>
+
 
 ## Introductions
 
@@ -42,24 +39,15 @@ Figure 1. SQL Meme
 
 - Participants
 
-<a id="_about_structured_query_language_sql"></a>
+
 
 ## About Structured Query Language (SQL)
 
-Structured Query Language (SQL) is a language used for querying and
-manipulating data in a database and it provides a relational database
-management system. SQL allows users to efficiently create, read, update,
-and delete data in databases. It is widely used across applications,
-from small projects to large-scale industry systems. For data analysts,
-data scientists, and software developers, understanding SQL is essential
-for working effectively with databases.
+Structured Query Language (SQL) is a language used for querying and manipulating data in a database and it provides a relational database management system. SQL allows users to efficiently create, read, update, and delete data in databases. It is widely used across applications, from small projects to large-scale industry systems. For data analysts, data scientists, and software developers, understanding SQL is essential for working effectively with databases.
 
-We use [SQLite](https://sqlite.org), which does not require a server to
-run. The database is built into the application, and the app reads from
-and writes to the database files directly on disk. SQLite source code is
-public and free to everyone.
+We use [SQLite](https://sqlite.org), which does not require a server to run. The database is built into the application, and the app reads from and writes to the database files directly on disk. SQLite source code is public and free to everyone.
 
-<a id="_datasets"></a>
+
 
 ## Datasets
 
@@ -67,7 +55,7 @@ JupyterLab on [Anvil](https://www.rcac.purdue.edu/compute/anvil), a
 supercomputer supported by the National Science Foundation, will be used
 for this workshop.
 
-<a id="_imdb"></a>
+
 
 ### IMDb
 
@@ -102,7 +90,6 @@ title.ratings.tsv.gz
 We will use the SQLite database format created from those tsv
 (Tab-Separated Values) files.
 
-<a id="_lahman_baseball_database"></a>
 
 ### Lahman Baseball Database
 

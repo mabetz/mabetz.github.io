@@ -196,4 +196,3 @@ who are over 74 inches tall.
 by their birth year, ordered by the average weight in descending order,
 limiting the results to 10 records.
 
-Last updated 2026-09-18 19:23:59 UTC
