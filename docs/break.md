@@ -13,6 +13,7 @@
 Figure 1. Eliminate one food group.
 
 <img src="dog.png" width="792" height="500" alt="Meme" />
+![GitHub Pages](_images/dog.png)
 
 
 Figure 2. How would a dog wear pants?
@@ -62,7 +63,9 @@ Students work in teams to find 10 things they have in common.
 ## What cute animal are you today?
 
 <img src="cute-animals.jpg" width="792" height="500" alt="Meme" />
+![GitHub Pages](_images/cute-animals.jpg)
+
 
 Figure 3. What cute animal are you today?
 
-Last updated 2026-09-18 19:29:40 UTC
+

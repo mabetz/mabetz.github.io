@@ -28,11 +28,10 @@ Wednesday, November 12, 2025, 8:00 AM to noon
 | 11:50 AM - 12:00 PM | 10      | Wrap up                           |
 | On your own         |         | 6\. Real-World Querying Challenge |
 
-<img src="sql_meme.jpg" width="792" height="500" alt="Meme" />
 
 ![GitHub Pages](_images/sql_meme.jpg)
-
 Figure 1. SQL Meme
+
 <a id="_introductions"></a>
 
 ## Introductions
@@ -143,4 +142,3 @@ database, we recommend having two notebooks open:
     utilize the Lahman baseball data. Title this file "practice.ipynb"
     or "baseball.ipynb".
 
-Last updated 2026-09-18 19:18:15 UTC
