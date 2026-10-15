@@ -253,6 +253,18 @@ SELECT b.primaryTitle FROM basics LIMIT 5;
 |--|------------|
 | Important | The column names in this demo (for example `titleType`, `isAdult`, `primaryTitle`, `runtimeMinutes`) are the ones of the `imdbSept2026.db` tables, including the capital letters. If a query returns `no such column`, check the exact spelling with `PRAGMA table_info(basics);`. |
 
+<a id="_common_mistakes"></a>
+
+### Common mistakes
+
+| Mistake | What happens | Fix |
+|----|----|----|
+| Forgetting `%%sql` at the top of a SQL cell | `SyntaxError: invalid syntax`, because the cell is run as Python | Make `%%sql` the first line of every SQL cell |
+| Forgetting the `FROM` part (a missing semicolon is fine when a cell contains a single query, but it is needed to separate several queries) | Error, for example `no such column` | Check that the query reads `SELECT ... FROM ...;` |
+| Misspelling a table or column name | `no such table` or `no such column` error | List the tables and columns first (see the tips above) |
+| Selecting `*` from a very large table without `LIMIT` | The cell takes very long or the notebook becomes unresponsive | Always add `LIMIT` while exploring |
+| Using an alias in a later query | `no such column` error | Define the alias again in every query that uses it |
+
 <a id="_practice_on_your_own"></a>
 
 ## Practice on your own
