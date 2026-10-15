@@ -267,7 +267,7 @@ SELECT b.primaryTitle FROM basics LIMIT 5;
 
 <a id="_practice_on_your_own"></a>
 
-## Practice on your own
+## Practice on your own (WILL BE UPDATED (FULYA))
 
 Now, you’ll practice the concepts above on your own with the Lahman
 Baseball data.
