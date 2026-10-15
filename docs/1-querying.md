@@ -2,6 +2,13 @@
 
 # 1. Basics of Querying
 
+By the end of this section you will be able to:
+
+- explain what `SELECT`, `SELECT DISTINCT` and `LIMIT` do, and combine them in one query
+- give a column or a table a temporary name with an alias (`AS`)
+- connect to a SQLite database from a JupyterLab notebook and explore its tables
+- count the records in a table with `COUNT(*)`
+
 <a id="_concepts"></a>
 
 ## Concepts
