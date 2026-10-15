@@ -16,8 +16,11 @@ By the end of this section you will be able to:
 | Command | Description | Example | Example Description |
 |----|----|----|----|
 | `SELECT` | Used to select data from a database. | `SELECT * FROM table;` | Selects all columns from the table called `table` |
-| `SELECT DISTINCT` | Used to select unique values from one or more columns. Duplicate rows (for the given columns) will not be selected. | `SELECT DISTINCT column1, column2 FROM table;` | Selects all rows that are not duplicate combinations fro columns 1 and 2 from the table called `table` |
+| `SELECT DISTINCT` | Used to select unique values from one or more columns. Duplicate rows (for the given columns) will not be selected. | `SELECT DISTINCT column1, column2 FROM table;` | Selects all rows that are not duplicate combinations from columns 1 and 2 from the table called `table` |
 | `LIMIT` | Used to specify the number of records to return. | `SELECT * FROM table LIMIT 10;` | Selects all columns from the table called `table` and limits the results to 10 records |
+| `AS` | Used to give a column or a table a temporary name (an alias). | `SELECT column1 AS c1 FROM table;` | Selects `column1` from the table called `table` and displays it under the name `c1` |
+| `COUNT(*)` | Used to count the number of rows. | `SELECT COUNT(*) FROM table;` | Returns the number of records in the table called `table` |
+
 
 <a id="_aliasing"></a>
 
