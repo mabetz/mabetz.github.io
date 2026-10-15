@@ -163,6 +163,32 @@ and as `titleId` in `akas`), it is the key that lets us connect them
 later on. In the same way, `nconst` identifies a person and connects the
 `name` table to `principals`.
 
+### Selecting unique values with `SELECT DISTINCT`
+
+A column such as the type of a title contains the same value over and
+over. Compare the next two queries:
+
+```sql
+%%sql
+SELECT titleType FROM basics LIMIT 10;
+```
+
+```sql
+%%sql
+SELECT DISTINCT titleType FROM basics;
+```
+
+The first query returns ten rows, repeated values included. The second
+one returns every different value that appears in the column exactly
+once. (It has to look at all 12 million rows of `basics`, so it may take
+a few seconds.) `DISTINCT` also works on several columns at once, in
+which case it returns each unique *combination* of the values:
+
+```sql
+%%sql
+SELECT DISTINCT titleType, isAdult FROM basics;
+```
+
 <a id="_practice_on_your_own"></a>
 
 ## Practice on your own
