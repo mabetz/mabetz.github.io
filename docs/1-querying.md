@@ -53,23 +53,37 @@ using it.
 
 ## Demo
 
-|  |  |
-|----|----|
-| Important | Fulya **Add Aliasing examples below <a href="https://the-examples-book.com/tools/sql/aliasing"
-class="bare">https://the-examples-book.com/tools/sql/aliasing</a>** |
-
-For today’s practices, please select the `seminar` kernel. To run SQL
+For today’s practices, please select the `seminar` kernel in Anvil. To run SQL
 queries in a JupyterLab notebook, first run the following in a cell at
 the top of your notebook to establish a connection with the database:
 
 ```
-%sql sqlite:////anvil/projects/tdm/data/movies_and_tv/imdb.db
+%sql sqlite:////anvil/projects/x-cis220051/data/wsds/imdbSept2026.db
 ```
+
+|  |  |
+|--|------------|
+| Tip | Start every SQL cell with `%%sql` as its first line, otherwise Jupyter treats the cell as Python code and returns a syntax error. Run each query in its own cell: when a cell contains several queries, only the result of the last one is displayed. |
+
+This is a snapshot of the IMDb public datasets from September 2026. It
+is a large database (about 22 GB), so always limit the number of rows
+you display. It consists of seven tables:
+
+| Table | What it contains | Key columns |
+|----|----|----|
+| `basics` | One row per title (movie, TV series, episode, ...): type, titles, years, runtime, genres | `tconst` |
+| `akas` | Alternative titles of a title, e.g. translated or regional titles | `titleId` (same as `tconst`) |
+| `crew` | The directors and writers of a title | `tconst` |
+| `episode` | Links each episode to its parent series, with season and episode number | `tconst`, `parentTconst` |
+| `principals` | The principal cast and crew of a title and their role | `tconst`, `nconst` |
+| `ratings` | The average rating and the number of votes of a title | `tconst` |
+| `name` | One row per person: name, birth and death year, professions | `nconst` |
+
 
 <table>
 <colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
+<col style="width: 12%" />
+<col style="width: 88%" />
 </colgroup>
 <tbody>
 <tr>
