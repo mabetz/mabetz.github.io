@@ -128,32 +128,40 @@ any rows, use:
 PRAGMA table_info(basics);
 ```
 
-|  |  |
-|----|----|
-| Tip | In SQL and certain other languages like bash or batch, the asterisk (\*) acts as a wildcard that represents "everything". For instance, the command `SELECT * FROM table` retrieves all columns from the table named table, regardless of their names, data types, or values. This feature is convenient when you want to extract every piece of data from a table without listing each column one by one. |
+In SQL and certain other languages like bash or batch, the asterisk (\*) acts as a wildcard that represents "everything". For instance, the command `SELECT * FROM table` retrieves all columns from the table named table, regardless of their names, data types, or values. This feature is convenient when you want to extract every piece of data from a table without listing each column one by one. When you only need a few columns, list them by name instead (for example `SELECT primaryTitle, genres FROM basics LIMIT 5;`). The result is easier to read and, on large tables, faster to produce. 
 
-Now, let’s check how many records are in the people table:
+Now, let’s check how many records are in the `name` table:
 
+```sql
+%%sql
+SELECT COUNT(*) FROM name;
 ```
-SELECT COUNT(*) FROM people;
-```
+There are more than 15 million records in the table, so displaying
+the full table would not be feasible. (The `principals` table is even
+larger, with more than 100 million rows.)
 
-As you can see, there are more than 11 million records, so displaying
-the full table would not be feasible.
-
-Let’s take a closer look at the titles table by running the following
+Let’s take a closer look at the basics table by running the following
 query:
 
-```
-SELECT * FROM titles LIMIT 5;
+```sql
+%%sql
+SELECT * FROM basics LIMIT 5;
 ```
 
-As you can see, each row includes a `title_id` that corresponds to the
+As you can see, each row includes a `tconst` that corresponds to the
 title of a movie, TV show, or another type of media. But what exactly is
-this `title_id`? Take a look at the following link:
+this `tconst`? Take a look at the following link:
 
 <a href="https://www.imdb.com/title/tt0111161"
 class="bare">https://www.imdb.com/title/tt0111161</a>
+
+The `tconst` is the identifier IMDb itself uses for a title: it is the
+last part of the web address of the title’s page (here `tt0111161`, the
+page of *The Shawshank Redemption*). Because the same identifier is used
+in several tables (`basics`, `crew`, `episode`, `principals`, `ratings`,
+and as `titleId` in `akas`), it is the key that lets us connect them
+later on. In the same way, `nconst` identifies a person and connects the
+`name` table to `principals`.
 
 <a id="_practice_on_your_own"></a>
 
