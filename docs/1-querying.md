@@ -21,6 +21,33 @@ By the end of this section you will be able to:
 | `AS` | Used to give a column or a table a temporary name (an alias). | `SELECT column1 AS c1 FROM table;` | Selects `column1` from the table called `table` and displays it under the name `c1` |
 | `COUNT(*)` | Used to count the number of rows. | `SELECT COUNT(*) FROM table;` | Returns the number of records in the table called `table` |
 
+<a id="_aliasing"></a>
+
+### Aliasing
+
+Aliasing is the process of giving a table or a table column a temporary
+name. Aliases are commonly used to either make the query easier to
+write, or more readable.
+
+Note that aliases only last for the duration of a single query. If we
+were to run a query that defines an alias, and subsequently run another
+query that uses that alias without defining it again, the second query
+would fail.
+
+The general pattern is:
+
+```sql
+-- column alias
+SELECT column_name AS alias_name FROM table_name;
+
+-- table alias
+SELECT alias_name.column_name FROM table_name AS alias_name;
+```
+
+The keyword `AS` is optional in SQLite (`FROM basics b` works too), but
+writing it makes the intent of the query clearer, so we recommend always
+using it.
+
 <a id="_demo"></a>
 
 ## Demo
@@ -160,33 +187,6 @@ which case it returns each unique *combination* of the values:
 %%sql
 SELECT DISTINCT titleType, isAdult FROM basics;
 ```
-
-<a id="_aliasing"></a>
-
-### Aliasing
-
-Aliasing is the process of giving a table or a table column a temporary
-name. Aliases are commonly used to either make the query easier to
-write, or more readable.
-
-Note that aliases only last for the duration of a single query. If we
-were to run a query that defines an alias, and subsequently run another
-query that uses that alias without defining it again, the second query
-would fail.
-
-The general pattern is:
-
-```sql
--- column alias
-SELECT column_name AS alias_name FROM table_name;
-
--- table alias
-SELECT alias_name.column_name FROM table_name AS alias_name;
-```
-
-The keyword `AS` is optional in SQLite (`FROM basics b` works too), but
-writing it makes the intent of the query clearer, so we recommend always
-using it.
 
 <a id="_aliasing_examples"></a>
 
