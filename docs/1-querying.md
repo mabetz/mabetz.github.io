@@ -189,6 +189,71 @@ which case it returns each unique *combination* of the values:
 SELECT DISTINCT titleType, isAdult FROM basics;
 ```
 
+<a id="_aliasing_examples"></a>
+
+### Aliasing examples
+
+As a next example, let’s put aliases to work on the IMDb tables. 
+
+First, a **column alias** changes the name
+under which a column is displayed. Notice the new column headers in the
+output:
+
+```sql
+%%sql
+SELECT primaryTitle AS title, runtimeMinutes AS minutes
+FROM basics
+LIMIT 5;
+```
+
+If an alias should contain spaces or special characters, put it in
+double quotes:
+
+```sql
+%%sql
+SELECT primaryTitle AS "Movie Title", runtimeMinutes AS "Run Time (min)"
+FROM basics
+LIMIT 5;
+```
+
+Aliases are also useful for results that are calculated rather than
+stored in a column, since these would otherwise get an unreadable
+default name:
+
+```sql
+%%sql
+SELECT COUNT(*) AS number_of_people FROM name;
+```
+
+Next, a **table alias** gives a table a short name that we can use to
+refer to its columns. This does not change the output here, but it keeps
+longer queries readable, and it becomes essential once we work with
+several tables at the same time:
+
+```sql
+%%sql
+SELECT b.primaryTitle, b.genres
+FROM basics AS b
+LIMIT 5;
+```
+
+Finally, remember that an alias only exists for the query that defines
+it. The following query reuses `b` without defining it, so it fails with
+an error such as `no such column: b.primaryTitle`:
+
+```sql
+%%sql
+SELECT b.primaryTitle FROM basics LIMIT 5;
+```
+
+|  |  |
+|--|------------|
+| Tip | Choose aliases that are short but meaningful (`b` for `basics`, `n` for `name`). Single letters are fine in short queries, but descriptive names such as `number_of_people` make the output easier for others to read. |
+
+|  |  |
+|--|------------|
+| Important | The column names in this demo (for example `titleType`, `isAdult`, `primaryTitle`, `runtimeMinutes`) are the ones of the `imdbSept2026.db` tables, including the capital letters. If a query returns `no such column`, check the exact spelling with `PRAGMA table_info(basics);`. |
+
 <a id="_practice_on_your_own"></a>
 
 ## Practice on your own
