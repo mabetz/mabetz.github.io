@@ -31,8 +31,23 @@ name. Aliases are commonly used to either make the query easier to
 write, or more readable.
 
 Note that aliases only last for the duration of a single query. If we
-were to run the previous query, and subsequently run the following
-query, it would fail.
+were to run a query that defines an alias, and subsequently run another
+query that uses that alias without defining it again, the second query
+would fail.
+
+The general pattern is:
+
+```sql
+-- column alias
+SELECT column_name AS alias_name FROM table_name;
+
+-- table alias
+SELECT alias_name.column_name FROM table_name AS alias_name;
+```
+
+The keyword `AS` is optional in SQLite (`FROM basics b` works too), but
+writing it makes the intent of the query clearer, so we recommend always
+using it.
 
 <a id="_demo"></a>
 
