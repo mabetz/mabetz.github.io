@@ -33,7 +33,7 @@ Figure 1. SQL Meme
 
 ## Introductions
 
-- Fulya (fgokalp(AT)purdue.edu)
+- Fulya (fgokalp(AT)metu.edu.tr)
 
 - Maggie (betz(AT)purdue.edu)
 
@@ -56,12 +56,11 @@ supercomputer supported by the National Science Foundation, will be used
 for this workshop.
 
 
-
 ### IMDb
 
 We will use the
 [IMDb](https://developer.imdb.com/non-commercial-datasets/) SQLite data
-located at: `/anvil/projects/tdm/data/movies_and_tv/imdb.db`\[1\] for
+located at: `/anvil/projects/tdm/data/wsds/imdbSept2026.db`\[1\] for
 all **demo** content.
 
 The following is an illustration of the database to help you understand
