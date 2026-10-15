@@ -99,18 +99,34 @@ follows:</p>
 </tbody>
 </table>
 
-See first five lines of `people` table and `titles`:
+See first five lines of `name` table and `basics`:
 
+```sql
+%%sql
+SELECT * FROM name LIMIT 5;
 ```
-SELECT * FROM people LIMIT 5;
 
-SELECT * FROM titles LIMIT 5;
+```sql
+%%sql
+SELECT * FROM basics LIMIT 5;
 ```
 
 It is a good idea to run this query on each table in the dataset to
 identify the common keys that can be used to connect the tables in SQL.
 It is also helpful to limit the number of rows you display (`LIMIT`),
 viewing an entire table at once is not practical.
+
+|  |  |
+|--|------------|
+| Tip | `LIMIT` does not choose *which* rows you get. Without further instructions, the database returns rows in whatever order is most convenient for it, so do not assume the first rows are the oldest, the best, or the most popular titles. |
+
+To list the column names and data types of a table without displaying
+any rows, use:
+
+```sql
+%%sql
+PRAGMA table_info(basics);
+```
 
 |  |  |
 |----|----|
