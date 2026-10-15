@@ -24,7 +24,7 @@ hands-on experience that supports both immediate application and
 long-term growth in data-focused roles.
 
 
-//JupyterLab on https://www.rcac.purdue.edu/compute/anvil[Anvil], a supercomputer supported by the National Science Foundation, will be used for this workshop.
+JupyterLab on [Anvil](https://www.rcac.purdue.edu/compute/anvil), a supercomputer supported by the National Science Foundation, will be used for this workshop.
 
 
 
