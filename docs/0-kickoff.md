@@ -101,13 +101,13 @@ We will use the Lahman data for all **practice on your own** content.
 The following is an illustration of the database to help you understand
 the data.
 
-<img src="lahmandb.png" width="792" height="500"
-alt="Database diagram from https://dbdiagram.io" />
+
+![GitHub Pages](_images/lahmandb.png)
 
 Figure 3. Database diagram from
 <a href="https://sabr.org/lahman-database/"
 class="bare">https://sabr.org/lahman-database/</a>
-<a id="_login_in_to_anvil"></a>
+
 
 ## Login in to Anvil
 

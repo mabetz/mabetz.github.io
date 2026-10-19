@@ -1,4 +1,3 @@
-<a id="basics-of-querying"></a>
 
 # 1. Basics of Querying
 
@@ -9,7 +8,6 @@ By the end of this section you will be able to:
 - connect to a SQLite database from a JupyterLab notebook and explore its tables
 - count the records in a table with `COUNT(*)`
 
-<a id="_concepts"></a>
 
 ## Concepts
 
@@ -21,7 +19,6 @@ By the end of this section you will be able to:
 | `AS` | Used to give a column or a table a temporary name (an alias). | `SELECT column1 AS c1 FROM table;` | Selects `column1` from the table called `table` and displays it under the name `c1` |
 | `COUNT(*)` | Used to count the number of rows. | `SELECT COUNT(*) FROM table;` | Returns the number of records in the table called `table` |
 
-<a id="_aliasing"></a>
 
 ### Aliasing
 
@@ -48,7 +45,6 @@ The keyword `AS` is optional in SQLite (`FROM basics b` works too), but
 writing it makes the intent of the query clearer, so we recommend always
 using it.
 
-<a id="_demo"></a>
 
 ## Demo
 
@@ -188,7 +184,6 @@ which case it returns each unique *combination* of the values:
 SELECT DISTINCT titleType, isAdult FROM basics;
 ```
 
-<a id="_aliasing_examples"></a>
 
 ### Aliasing examples
 
@@ -253,7 +248,6 @@ SELECT b.primaryTitle FROM basics LIMIT 5;
 |--|------------|
 | Important | The column names in this demo (for example `titleType`, `isAdult`, `primaryTitle`, `runtimeMinutes`) are the ones of the `imdbSept2026.db` tables, including the capital letters. If a query returns `no such column`, check the exact spelling with `PRAGMA table_info(basics);`. |
 
-<a id="_common_mistakes"></a>
 
 ### Common mistakes
 
@@ -265,12 +259,10 @@ SELECT b.primaryTitle FROM basics LIMIT 5;
 | Selecting `*` from a very large table without `LIMIT` | The cell takes very long or the notebook becomes unresponsive | Always add `LIMIT` while exploring |
 | Using an alias in a later query | `no such column` error | Define the alias again in every query that uses it |
 
-<a id="_practice_on_your_own"></a>
 
 ## Practice on your own (WILL BE UPDATED (FULYA))
 
-Now, you’ll practice the concepts above on your own with the Lahman
-Baseball data.
+Now, you’ll practice the concepts above on your own with the Lahman Baseball data.
 
 ```
 %sql sqlite:////anvil/projects/tdm/data/lahman/lahman.db

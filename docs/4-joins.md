@@ -1,8 +1,6 @@
-<a id="joins-and-other-ways-to-combining-or-create-tables"></a>
 
 # 4. Joins and other ways to combining or create tables
 
-<a id="_concepts"></a>
 
 ## Concepts
 
@@ -20,10 +18,11 @@ table (the first table in the join) and the matching rows from the right
 table (the second table in the join). If there is no match, `NULL`
 values are returned for the columns of the right table.
 
-<img src="sql-join-types.png" width="592" height="300" alt="JOINS" />
 
+
+![GitHub Pages](_images/sql-join-types.png)
 Figure 1. 4 types of SQL `JOINS`
-<a id="_additional_ways_to_combine_or_create_tables"></a>
+
 
 ### Additional ways to combine or create tables
 
@@ -36,7 +35,6 @@ Figure 1. 4 types of SQL `JOINS`
 | `DROP` | Used to delete a table or database. | `DROP TABLE table` | Deletes the `table` from the database |
 | `CREATE` | Used to create a new table or database. | `CREATE TABLE table (column1 datatype, column2 datatype)` | Creates a new table called `table` with `column1` and `column2` of specified data types |
 
-<a id="_primary_and_foreign_keys"></a>
 
 ### Primary and foreign keys
 
@@ -51,7 +49,6 @@ A foreign key is an identifier used to reference a primary key in a
 different (foreign) table. In other words, a foreign key must exist in
 another table.
 
-<a id="_demo"></a>
 
 ## Demo
 
@@ -80,7 +77,6 @@ LIMIT 20;
 |----|----|
 | Note | `RIGHT JOIN` is the opposite of a `LEFT JOIN`, but SQLite does not support it natively. If you need to use a right join, you can typically just use a left join with the order of the tables flipped. Additionally, there is an `OUTER JOIN`, which is a combination of `LEFT JOIN` and `RIGHT JOIN`. It returns all rows from both tables, with NULLs in places where there is no match. However, SQLite does not support FULL OUTER JOIN natively either. |
 
-<a id="_join_three_tables"></a>
 
 ### Join three tables
 
@@ -146,7 +142,6 @@ HAVING t.premiered = 2000 AND average_rating > 8;
 |----|----|
 | Note | The `HAVING` clause is very similar to the `WHERE` clause, but the key difference is that it is used to filter results after aggregation, while `WHERE` is used to filter results before aggregation. |
 
-<a id="_with"></a>
 
 #### WITH
 
@@ -166,7 +161,6 @@ SELECT * FROM joined_table LIMIT 5;
 |----|----|
 | Note | This temporary table joined_data will only exist for the duration of the query (the current code cell in this case). If you want to make it permanent, you can use the `CREATE TABLE` command instead of `WITH`, with the exact same syntax. However, in this case, you will not be able to do this on the IMDB or Lahman dataset as it is stored as a read-only database in anvil. |
 
-<a id="_practice_on_your_own"></a>
 
 ## Practice on your own
 

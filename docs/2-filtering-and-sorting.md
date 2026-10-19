@@ -1,12 +1,9 @@
-<a id="filtering-and-sorting"></a>
 
 # 2. Filtering and Sorting
 
-<a id="_concepts"></a>
 
 ## Concepts
 
-<a id="_clauses"></a>
 
 ### Clauses
 
@@ -16,7 +13,6 @@
 | `ORDER BY` | Used to sort the result set in ascending or descending order. | `SELECT * FROM table ORDER BY column ASC` | Selects all columns from the table called `table` and orders the results by `column` in ascending order |
 | `LIMIT` | Used to specify the number of records to return. | `SELECT * FROM table LIMIT 10;` | Selects all columns from the table called `table` and limits the results to 10 records |
 
-<a id="_demo"></a>
 
 ## Demo
 
@@ -166,7 +162,6 @@ limiting the results to 10 records.\
 in 1997?\
 1.4. What is the oldest movie according to this database?
 
-<a id="_practice_on_your_own"></a>
 
 ## Practice on your own
 

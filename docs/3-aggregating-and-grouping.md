@@ -1,8 +1,6 @@
-<a id="aggregation-and-grouping"></a>
 
 # 3. Aggregation and Grouping
 
-<a id="_concepts"></a>
 
 ## Concepts
 
@@ -10,7 +8,6 @@
 |----|----|----|----|
 | `GROUP BY` | Used to group rows with the same values in specified columns into summary row(s). | `SELECT column, COUNT(*) FROM table GROUP BY column` | Selects the `column` and counts the number of records in each group, grouping by the `column` |
 
-<a id="_aggregate_functions"></a>
 
 ### Aggregate functions
 
@@ -24,7 +21,6 @@
 
 - MAX
 
-<a id="_group_by"></a>
 
 ### GROUP BY
 
@@ -40,7 +36,6 @@ together with aggregation functions such as `COUNT`, `SUM`, `AVG`,
 `MIN`, and `MAX`. These functions let us perform calculations on each
 group of data.
 
-<a id="_having"></a>
 
 ### HAVING
 
@@ -50,7 +45,6 @@ single query can have both a `WHERE` clause and a `HAVING` clause. The
 `WHERE` clause will filter the data *before* aggregation, and the
 `HAVING` clause will filter the data *after* aggregation.
 
-<a id="_demo"></a>
 
 ## Demo
 
@@ -164,7 +158,7 @@ SELECT premiered AS year, CAST(COUNT(*) AS real)/29 AS n FROM titles
 WHERE title_id IN ('tt0371746', 'tt0800080', 'tt1228705', 'tt0800369', 'tt0458339', 'tt0848228', 'tt1300854', 'tt1981115', 'tt1843866', 'tt2015381', 'tt2395427', 'tt0478970', 'tt3498820', 'tt1211837', 'tt3896198', 'tt2250912', 'tt3501632', 'tt1825683', 'tt4154756', 'tt5095030', 'tt4154664', 'tt4154796', 'tt6320628', 'tt3480822', 'tt9032400', 'tt9376612', 'tt9419884', 'tt10648342', 'tt9114286') GROUP BY premiered;
 ```
 
-Lets continue to practise more by writing a query that returns the
+Lets continue to practice more by writing a query that returns the
 average number of words in the primary_title column, by year:
 
 ```
@@ -183,7 +177,6 @@ FROM titles GROUP BY premiered
 HAVING avg_title_length < 3;
 ```
 
-<a id="_practice_on_your_own"></a>
 
 ## Practice on your own
 

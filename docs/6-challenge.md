@@ -1,4 +1,3 @@
-<a id="real-world-querying-challenge"></a>
 
 # 6. Real-World Querying Challenge
 
@@ -11,7 +10,6 @@ if you have questions.
 We will remove users from Anvil on Monday so please be sure to download
 any notes, documents, or files by then.
 
-<a id="_other_sql_databases_already_on_anvil"></a>
 
 ## Other SQL databases already on Anvil
 
@@ -60,7 +58,6 @@ Below are various databases that are available on Anvil.
 ./bay_area_bike_share/kaggle/bay_area_bike_share.db
 ```
 
-<a id="_additional_resources"></a>
 
 ## Additional resources
 

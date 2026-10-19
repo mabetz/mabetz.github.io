@@ -7,7 +7,7 @@ conference. You are welcome to use it to practice working with SQLite.
 
 ## Course Logistics
 
-- Wednesday, October 28, 2026, 8:00 AM to noon
+- Wednesday, October 28, 2026, 8:00 AM to noon Eastern time
 
 - Link: https://ww2.amstat.org/meetings/wsds/2026/OnlineProgram/session.cfm?id=202371
 

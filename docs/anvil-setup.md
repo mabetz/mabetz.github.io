@@ -1,15 +1,9 @@
-<a id="setting-up-your-account-for-the-workshop"></a>
 
 # Setting Up Your Account for the Workshop
 
-<a id="author"></a>To get started, you’ll need to set up your ACCESS
-account. This account will grant you access to Anvil, the powerful
-computing resource you’ll be using for this workshop. It’s important to
-set up your account before the workshop, as it takes time for you to be
-added to the allocation.\
-<a id="_step_1_create_your_access_account"></a>
+To get started, you’ll need to set up your ACCESS account. This account will grant you access to Anvil, the computing resource you’ll be using for this workshop. It’s important to set up your account before the workshop, as it takes time for you to be added to the allocation. _Follow these directions closely to set up the account correctly._
 
-## Step 1: Create your ACCESS account
+## Do you already have an ACCESS account? 
 
 - If you already have an ACCESS account (with your university/work/etc),
   you do **not** need to do it again. Please go to Step 2.
@@ -18,76 +12,40 @@ added to the allocation.\
   <a href="https://identity.access-ci.org/username-reminder"
   class="bare">https://identity.access-ci.org/username-reminder</a>
 
-To create a new account, go to this website:
-<a href="https://identity.access-ci.org/new-user"
-class="bare">https://identity.access-ci.org/new-user</a>
 
-We suggest you use the [Firefox](https://www.firefox.com) browser on a
+## Create your ACCESS account
+
+|  |  |
+|----|----|
+| Important | ACCESS has changed their requirements for ACCESS accounts recently. Now, email domains like `gmail.com` and `yahoo.com` are no longer accepted, and your email domain should match the organization you’ve selected for your ACCESS account. _If you do not have a .edu email, please reach out at betz(AT)purdue.edu_ |
+
+
+1. To create a new account, go to this website:
+<a href="https://identity.access-ci.org/new-user"
+class="bare">https://identity.access-ci.org/new-user</a> We suggest you use the [Firefox](https://www.firefox.com) browser on a
 computer for this step.
 
-|  |  |
-|----|----|
-| Important | ACCESS have changed their requirements for ACCESS accounts recently. Now, email domains like `gmail.com` and `yahoo.com` are no longer accepted, and your email domain should match the organization you’ve selected for your ACCESS account. If this is a concern, please reach out at kqlacy(AT)purdue.edu |
+2. Retrieve the 6 digit code sent to your email and enter it. 
 
-This video shows you how to create your account.
+      If your email domain is registered with ACCESS, it will allow you to proceed automatically with the next steps. Most university .edu emails should be registered. However, if ACCESS returns with a red box at the top that says "UNKNOWN EMAIL DOMAIN" - please do not proceed further. Skip to the end (past step 8) and instead only complete the information survey below. Please email Maggie at betz(AT)purdue.edu for alternative steps. DO NOT fill out the form for an organization request or open a ticket. This will be lengthy and not resolve the issue. 
 
-<a id="_step_2_share_your_access_username_with_us"></a>
+3. Next you will be asked to enter your Home Organization. If you are a student or have a .edu email, select your institution. If you cannot find your organization in the list, email Maggie at betz(AT)purdue.edu for alternative steps. 
 
-## Step 2: Share your ACCESS username with us!
+4. Compete the required registration information. 
+      First name: [enter legal first name]
+      Last name: [enter legal last name]
+      Institution: [if you are part of an academic institution, please enter that. If you cannot find an organization, you can try putting "Purdue University".]
+      Department: [required]
+      Academic status: [required]
+      Country of Residence: [this is where you currently live - hopefully this is US because accounts are only created for people currently living in the US due to NSF policy].
+      Country of Citizenship: [enter relevant country]
 
-Please return to the survey and provide your username so we can add you
-to our allocation. Missing this step will prevent you from accessing
-computing resources.
+5. You will be asked to re-authenticate your session by logging in again, so we must do a few additional steps before actually completing the profile. You will either see a screen where you will just click `AUTHENTICATE WITH CILOGON` Or you will see a screen prompting you to select an identity provider. You must leave it as the default of ACCESS CI (XSEDE)!
 
-When you try to log into Anvil
-(<a href="https://notebook.anvilcloud.rcac.purdue.edu/"
-class="bare">https://notebook.anvilcloud.rcac.purdue.edu/</a>) and
-receive the 'failed to map' error, it means you haven’t been added to
-our allocation yet. It typically takes 1-2 business days after
-submitting your survey response for us to process your addition. If a
-couple of days have passed and you’re still seeing this error, please
-don’t hesitate to reach out to kqlacy(AT)purdue.edu
+6. Next you will be asked to enroll in the multi-factor authentication (MFA) system Duo Security which will ask you to install the Duo Mobile app on your smartphone or tablet. Complete the Duo enrollment steps as directed.
 
-<a id="_step_3_set_up_two_factor_authentication_2fa"></a>
+7. Now you should be logged in 
 
-## Step 3: Set Up Two-Factor Authentication (2FA)
 
-Once you’re added to the allocation and log into Anvil, you’ll likely be
-prompted to set up two-factor authentication (2FA) with your phone.
 
-1.  Go to the Anvil login page:
-    <a href="https://notebook.anvilcloud.rcac.purdue.edu"
-    class="bare">https://notebook.anvilcloud.rcac.purdue.edu</a>
-
-2.  Click the "Login" button.
-
-3.  Use your ACCESS username and password.
-
-The website will show you how to set up 2FA with an app on your phone.
-
-The video below shows you the steps to login to DataMine Notebook.
-
-<a id="_step_4_verify_your_information_on_the_hub"></a>
-
-## Step 4: Verify your information on the Hub
-
-Within 1-2 business days after your survey submission, you should
-receive an email invitation (check your spam) from The Data Mine’s Hub.
-If needed, you can resend the invitation to yourself by entering the
-email here: <a href="https://hub.datamine.purdue.edu/"
-class="bare">https://hub.datamine.purdue.edu/</a>
-
-If you don’t have an `.edu` email address, you can ignore the first
-checkmark on TDMHub. This requirement doesn’t apply to you.
-
-|  |  |
-|----|----|
-| Important | If you used a different email to create your ACCESS account, please add this alternate email under the Settings. This will allow us to link your ACCESS and Hub accounts, granting you the access to Anvil. |
-
-<a id="_step_5_youre_done"></a>
-
-## Step 5: You’re done!
-
-If you encounter any issues during this process, don’t hesitate to reach
-out to kqlacy(AT)purdue.edu.
 

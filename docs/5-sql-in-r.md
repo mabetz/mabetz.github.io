@@ -1,16 +1,10 @@
-<a id="sql-in-r"></a>
+
 
 # 5. SQL in R
 
-<a id="_concepts"></a>
 
 ## Concepts
 
-|           |                                    |
-|-----------|------------------------------------|
-| Important | Maggie still needs to add content. |
-
-<a id="_demo"></a>
 
 ## Demo
 
@@ -80,12 +74,7 @@ ggplot(tarantino_types, aes(x = reorder(type, count), y = count)) +
 |----|----|
 | Note | SQL syntax is NOT case sensitive. However, remember that R is case sensitive, so please be careful with the capitalization of data frame and variable names. |
 
-<a id="_practice_on_your_own"></a>
 
 ## Practice on your own
-
-|           |                                    |
-|-----------|------------------------------------|
-| Important | Maggie still needs to add content. |
 
 
