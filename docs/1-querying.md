@@ -260,9 +260,11 @@ SELECT b.primaryTitle FROM basics LIMIT 5;
 | Using an alias in a later query | `no such column` error | Define the alias again in every query that uses it |
 
 
-## Practice on your own (WILL BE UPDATED (FULYA))
+## Practice on your own
 
 Now, you’ll practice the concepts above on your own with the Lahman Baseball data.
+
+Remember to start every SQL cell with `%%sql`.
 
 ```
 %sql sqlite:////anvil/projects/tdm/data/lahman/lahman.db
@@ -276,18 +278,20 @@ Example 1. Deliverables
 
 1.3. List the names of all the tables in the database.
 
-1.4. Write a SQL query to select all columns from the `People` table,
-limiting the results to 5 records.
+1.4. Write a SQL query to select all columns from the `People` table, limiting the results to 5 records.
 
 Now focus on the `People` table.
 
 1.5. How many columns are in the `People` table?
 
-1.6. What is the name of the column that contains the player’s first
-name?
+1.6. What is the name of the column that contains the player's first name?
 
-1.7. For a players deathYear, what is put in the column if the player is
-still alive?
+1.7. For a players deathYear, what is put in the column if the player is still alive?
 
 1.8. What is Don Aase’s playerID?
+
+|  |  |
+|--|------------|
+| Hint | For 1.3 use the `sqlite_master` query from the demo. For 1.5 and 1.6 use `PRAGMA table_info(People);`. For 1.8 you do not need any new command: select the columns that contain the first and last name together with `playerID`, use a larger `LIMIT`, and look for the row you need. |
+
 
