@@ -66,13 +66,10 @@ all **demo** content.
 The following is an illustration of the database to help you understand
 the data.
 
-<img src="figure14.webp" width="792" height="500"
-alt="Database diagram from https://dbdiagram.io" />
+<img src="_images/imdb_schema.png" width="1100"
+alt="Database diagram of the IMDb data: the tables basics, akas, crew, episode, principals, name and ratings, connected through the tconst and nconst keys" />
 
-![GitHub Pages](_images/figure14.webp)
-
-Figure 2. Database diagram from
-<a href="https://dbdiagram.io" class="bare">https://dbdiagram.io</a>
+Figure 2. IMDb database schema diagram
 
 \[1\] There are 7 data files provided by IMDb:
 
