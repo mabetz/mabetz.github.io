@@ -69,7 +69,7 @@ the data.
 <img src="_images/imdb_schema.png" width="1100"
 alt="Database diagram of the IMDb data: the tables basics, akas, crew, episode, principals, name and ratings, connected through the tconst and nconst keys" />
 
-Figure 2. IMDb database schema diagram
+Figure 2. IMDb database schema diagram. The diagram was generated with Claude (Anthropic) from the schema of `imdbSept2026.db`. Highlighted rows are join keys: `tconst` identifies a title and `nconst` identifies a person. The keys are logical, the database does not declare primary or foreign key constraints.
 
 \[1\] There are 7 data files provided by IMDb:
 
