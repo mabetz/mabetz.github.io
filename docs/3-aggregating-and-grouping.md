@@ -77,85 +77,152 @@ processes the parts of a query in this logical order:
 
 ## Demo
 
-For example, we want to find the number of rows for each `type` in
-`titles` table:
+If you are starting a new notebook, connect to the database first (use the
+`seminar` kernel):
 
 ```
-SELECT type, COUNT(*) FROM titles GROUP BY type;
+%sql sqlite:////anvil/projects/x-cis220051/data/wsds/imdbSept2026.db
 ```
+
+|  |  |
+|--|------------|
+| Tip | The `basics` table has about 12.7 million rows and `akas` has almost 60 million rows. Queries that group a whole table can take a few seconds (`basics`) or even a minute or more (`akas`). This is normal, be patient and do not run the same cell again while it is running. |
+
+For example, we want to find the number of rows for each `titleType` in
+`basics` table:
+
+```sql
+%%sql
+SELECT titleType, COUNT(*) FROM basics GROUP BY titleType;
+```
+
+The result has one row for each type of title, and the `COUNT(*)` column
+tells us how many rows were in that group.
 
 Add average run time in minutes for each type:
 
+```sql
+%%sql
+SELECT titleType, COUNT(*), AVG(runtimeMinutes) FROM basics GROUP BY titleType;
 ```
-SELECT type, COUNT(*), AVG(runtime_minutes) FROM titles GROUP BY type;
+
+The headers of the calculated columns are not easy to read. As we learned
+in the aliasing section, we can give them clear names with `AS`:
+
+```sql
+%%sql
+SELECT titleType, COUNT(*) AS n, AVG(runtimeMinutes) AS avg_runtime
+FROM basics
+GROUP BY titleType;
 ```
 
 Or we only care about the movies:
 
+```sql
+%%sql
+SELECT titleType, COUNT(*) AS n, AVG(runtimeMinutes) AS avg_runtime
+FROM basics WHERE titleType = 'movie';
 ```
-SELECT type, COUNT(*) AS n, AVG(runtime_minutes)
-FROM titles WHERE type = 'movie';
-```
+
+Here `WHERE` keeps only the movies before the calculation, so only one
+group is left and we do not need a `GROUP BY`.
 
 In another example, suppose we want to find the average runtime of
 movies in each genre. We can use the `WHERE` command to filter the
-results to only include movies (for instance, `type = 'movie'`), the
+results to only include movies (for instance, `titleType = 'movie'`), the
 `GROUP BY` command to group the data by genre, and the `AVG` function to
 calculate the average runtime for each group. The SQL query would look
 like this:
 
-```
-SELECT genres, AVG(runtime_minutes) AS avg_runtime
-FROM titles
-WHERE type = 'movie'
+```sql
+%%sql
+SELECT genres, AVG(runtimeMinutes) AS avg_runtime
+FROM basics
+WHERE titleType = 'movie'
 GROUP BY genres;
 ```
 
+|  |  |
+|--|------------|
+| Important | Look closely at the `genres` column in the result. A title can have up to three genres and they are stored together in one text value, for example `Action,Adventure,Sci-Fi`. So `GROUP BY genres` creates one group for each *combination* of genres, not for each single genre. The result has many rows, so add `LIMIT 10` while you explore. |
+
 We can check only for 'Action':
 
-```
-SELECT AVG(runtime_minutes) AS avg_runtime
-FROM titles
-WHERE type = 'movie'
+```sql
+%%sql
+SELECT AVG(runtimeMinutes) AS avg_runtime
+FROM basics
+WHERE titleType = 'movie'
   AND genres LIKE '%Action%';
 ```
 
-Even when we use the wildcard (\*) to select all columns, we still have
-to specify which column we want to apply the aggregation to. In this
-example, we use the `AVG` function to calculate the average of the
-runtime_minute column. The `AS` keyword then lets us assign a clear
-name, avg_runtime, to the resulting column, which helps make our query
-output easier to read and interpret.
+The `%` in `LIKE` is a wildcard that stands for any text, so
+`'%Action%'` matches every genre list that contains the word Action, no
+matter where it is in the list. This is how we can look at a single genre
+even though the genres are stored together.
 
-Another example: find the number of titles for each language:
+Notice that `COUNT(*)` is the only aggregate function that can use the
+wildcard (\*), because to count rows we do not need to look at a specific
+column. The other functions (`SUM`, `AVG`, `MIN` and `MAX`) always need a
+column to work on. In the last example, we use the `AVG` function to
+calculate the average of the `runtimeMinutes` column. The `AS` keyword
+then lets us assign a clear name, `avg_runtime`, to the resulting column,
+which helps make our query output easier to read and interpret.
 
-```
-SELECT language, COUNT(*) as count FROM akas
+Another example: find the number of alternative titles (rows in `akas`)
+for each language. We also sort the result, largest group first, and show
+only the first 10 rows:
+
+```sql
+%%sql
+SELECT language, COUNT(*) AS n FROM akas
 GROUP BY language
-ORDER BY count DESC;
+ORDER BY n DESC
+LIMIT 10;
 ```
 
-Dr. Ward found all the title_id for Marvel Cinematic Universe (MCU)
+Dr. Ward found all the tconst for Marvel Cinematic Universe (MCU)
 before, we use them for this example to find how many we have each year:
 
-```
-SELECT premiered AS year, COUNT(*) AS n FROM titles
-WHERE title_id IN ('tt0371746', 'tt0800080', 'tt1228705', 'tt0800369', 'tt0458339', 'tt0848228', 'tt1300854', 'tt1981115', 'tt1843866', 'tt2015381', 'tt2395427', 'tt0478970', 'tt3498820', 'tt1211837', 'tt3896198', 'tt2250912', 'tt3501632', 'tt1825683', 'tt4154756', 'tt5095030', 'tt4154664', 'tt4154796', 'tt6320628', 'tt3480822', 'tt9032400', 'tt9376612', 'tt9419884', 'tt10648342', 'tt9114286') GROUP BY premiered;
+```sql
+%%sql
+SELECT startYear AS year, COUNT(*) AS n FROM basics
+WHERE tconst IN ('tt0371746', 'tt0800080', 'tt1228705', 'tt0800369', 'tt0458339',
+                 'tt0848228', 'tt1300854', 'tt1981115', 'tt1843866', 'tt2015381',
+                 'tt2395427', 'tt0478970', 'tt3498820', 'tt1211837', 'tt3896198',
+                 'tt2250912', 'tt3501632', 'tt1825683', 'tt4154756', 'tt5095030',
+                 'tt4154664', 'tt4154796', 'tt6320628', 'tt3480822', 'tt9032400',
+                 'tt9376612', 'tt9419884', 'tt10648342', 'tt9114286')
+GROUP BY startYear
+ORDER BY year;
 ```
 
 Let’s modify this query to get the percentage of MCU movies released in
 each year. First find the total:
 
-```
-SELECT COUNT(*) FROM titles
-WHERE title_id IN ('tt0371746', 'tt0800080', 'tt1228705', 'tt0800369', 'tt0458339', 'tt0848228', 'tt1300854', 'tt1981115', 'tt1843866', 'tt2015381', 'tt2395427', 'tt0478970', 'tt3498820', 'tt1211837', 'tt3896198', 'tt2250912', 'tt3501632', 'tt1825683', 'tt4154756', 'tt5095030', 'tt4154664', 'tt4154796', 'tt6320628', 'tt3480822', 'tt9032400', 'tt9376612', 'tt9419884', 'tt10648342', 'tt9114286');
+```sql
+%%sql
+SELECT COUNT(*) FROM basics
+WHERE tconst IN ('tt0371746', 'tt0800080', 'tt1228705', 'tt0800369', 'tt0458339',
+                 'tt0848228', 'tt1300854', 'tt1981115', 'tt1843866', 'tt2015381',
+                 'tt2395427', 'tt0478970', 'tt3498820', 'tt1211837', 'tt3896198',
+                 'tt2250912', 'tt3501632', 'tt1825683', 'tt4154756', 'tt5095030',
+                 'tt4154664', 'tt4154796', 'tt6320628', 'tt3480822', 'tt9032400',
+                 'tt9376612', 'tt9419884', 'tt10648342', 'tt9114286');
 ```
 
-When you divide the counts to total, you get zeros:
+The total should be 29. When you divide the counts to total, you get zeros:
 
-```
-SELECT premiered AS year, COUNT(*)/29 AS n FROM titles
-WHERE title_id IN ('tt0371746', 'tt0800080', 'tt1228705', 'tt0800369', 'tt0458339', 'tt0848228', 'tt1300854', 'tt1981115', 'tt1843866', 'tt2015381', 'tt2395427', 'tt0478970', 'tt3498820', 'tt1211837', 'tt3896198', 'tt2250912', 'tt3501632', 'tt1825683', 'tt4154756', 'tt5095030', 'tt4154664', 'tt4154796', 'tt6320628', 'tt3480822', 'tt9032400', 'tt9376612', 'tt9419884', 'tt10648342', 'tt9114286') GROUP BY premiered;
+```sql
+%%sql
+SELECT startYear AS year, COUNT(*)/29 AS n FROM basics
+WHERE tconst IN ('tt0371746', 'tt0800080', 'tt1228705', 'tt0800369', 'tt0458339',
+                 'tt0848228', 'tt1300854', 'tt1981115', 'tt1843866', 'tt2015381',
+                 'tt2395427', 'tt0478970', 'tt3498820', 'tt1211837', 'tt3896198',
+                 'tt2250912', 'tt3501632', 'tt1825683', 'tt4154756', 'tt5095030',
+                 'tt4154664', 'tt4154796', 'tt6320628', 'tt3480822', 'tt9032400',
+                 'tt9376612', 'tt9419884', 'tt10648342', 'tt9114286')
+GROUP BY startYear;
 ```
 
 Why?
@@ -163,9 +230,11 @@ Why?
 When we calculate a percentage using integer (numeric data without a
 decimal place) columns, SQLite performs integer division. That means it
 divides the numbers as integers and truncates any decimal part, instead
-of giving a decimal (floating-point) result. For example:
+of giving a decimal (floating-point) result. In our query, every year has
+fewer than 29 titles, so a value like 4/29 is cut down to 0. For example:
 
-```
+```sql
+%%sql
 SELECT 5/2;
 ```
 
@@ -173,43 +242,74 @@ This returns the integer part (2) in SQLite, not 2.5, because both 5 and
 2 are integers. We can fix it converting at least one of them to real
 number as following by :
 
-```
-SELECT CAST(5 AS REAL)/2 as result;
+```sql
+%%sql
+SELECT CAST(5 AS REAL)/2 AS result;
 ```
 
 `REAL` is equivalent to a float or double, meaning a number that can
-include decimal values.
+include decimal values. Writing one of the numbers with a decimal point
+(`5.0/2`) gives the same result.
 
-Lets fix it in the real data:
+Let’s fix it in the real data:
 
+```sql
+%%sql
+SELECT startYear AS year, CAST(COUNT(*) AS real)/29 AS n FROM basics
+WHERE tconst IN ('tt0371746', 'tt0800080', 'tt1228705', 'tt0800369', 'tt0458339',
+                 'tt0848228', 'tt1300854', 'tt1981115', 'tt1843866', 'tt2015381',
+                 'tt2395427', 'tt0478970', 'tt3498820', 'tt1211837', 'tt3896198',
+                 'tt2250912', 'tt3501632', 'tt1825683', 'tt4154756', 'tt5095030',
+                 'tt4154664', 'tt4154796', 'tt6320628', 'tt3480822', 'tt9032400',
+                 'tt9376612', 'tt9419884', 'tt10648342', 'tt9114286')
+GROUP BY startYear;
 ```
-SELECT premiered AS year, CAST(COUNT(*) AS real)/29 AS n FROM titles
-WHERE title_id IN ('tt0371746', 'tt0800080', 'tt1228705', 'tt0800369', 'tt0458339', 'tt0848228', 'tt1300854', 'tt1981115', 'tt1843866', 'tt2015381', 'tt2395427', 'tt0478970', 'tt3498820', 'tt1211837', 'tt3896198', 'tt2250912', 'tt3501632', 'tt1825683', 'tt4154756', 'tt5095030', 'tt4154664', 'tt4154796', 'tt6320628', 'tt3480822', 'tt9032400', 'tt9376612', 'tt9419884', 'tt10648342', 'tt9114286') GROUP BY premiered;
+
+The values are now proportions between 0 and 1. To get real percentages,
+multiply by 100 and round the result with `ROUND(value, number_of_decimals)`.
+Here `100.0` makes sure that the division uses decimals:
+
+```sql
+%%sql
+SELECT startYear AS year, ROUND(100.0 * COUNT(*) / 29, 1) AS percent FROM basics
+WHERE tconst IN ('tt0371746', 'tt0800080', 'tt1228705', 'tt0800369', 'tt0458339',
+                 'tt0848228', 'tt1300854', 'tt1981115', 'tt1843866', 'tt2015381',
+                 'tt2395427', 'tt0478970', 'tt3498820', 'tt1211837', 'tt3896198',
+                 'tt2250912', 'tt3501632', 'tt1825683', 'tt4154756', 'tt5095030',
+                 'tt4154664', 'tt4154796', 'tt6320628', 'tt3480822', 'tt9032400',
+                 'tt9376612', 'tt9419884', 'tt10648342', 'tt9114286')
+GROUP BY startYear
+ORDER BY year;
 ```
 
-Lets continue to practice more by writing a query that returns the
-average number of words in the primary_title column, by year:
+Let’s continue to practice more by writing a query that returns the
+average number of words in the primaryTitle column, by year. First, we
+count the words of each title. The number of spaces in a title is the
+difference between its length and its length after we remove all spaces
+with `replace`, and the number of words is one more than the number of
+spaces:
 
-```
-SELECT premiered, primary_title,
-length(primary_title) - length(replace(primary_title, ' ', '')) + 1
-FROM titles LIMIT 5;
+```sql
+%%sql
+SELECT startYear, primaryTitle,
+length(primaryTitle) - length(replace(primaryTitle, ' ', '')) + 1 AS n_words
+FROM basics LIMIT 5;
 ```
 
 Then, only for years where the average number of words in the
-primary_title is less than 3:
+primaryTitle is less than 3:
 
-```
-SELECT premiered,
-AVG(length(primary_title) - length(replace(primary_title, ' ', '')) + 1) AS avg_title_length
-FROM titles GROUP BY premiered
+```sql
+%%sql
+SELECT startYear,
+AVG(length(primaryTitle) - length(replace(primaryTitle, ' ', '')) + 1) AS avg_title_length
+FROM basics GROUP BY startYear
 HAVING avg_title_length < 3;
 ```
 
-<img src="_images/where_vs_having.png" width="1100"
-alt="Diagram showing the order in which a query is processed: all rows, then WHERE removes rows, then GROUP BY forms groups, then HAVING removes groups" />
-
-Figure 3. The difference between `WHERE` and `HAVING`. `WHERE` filters individual rows before they are grouped, while `HAVING` filters the groups after the aggregation. The diagram was generated with Claude (Anthropic) and uses a small made-up example, not the real IMDb numbers.
+|  |  |
+|--|------------|
+| Tip | SQLite lets us use the alias `avg_title_length` in `HAVING`. Some other databases (for example PostgreSQL) do not, and you would need to write the whole `AVG(...)` expression again in `HAVING`. This query calculates the words of all 12.7 million titles, so it can take a while. Also note that it assumes the words are separated by a single space. |
 
 
 ## Practice on your own
