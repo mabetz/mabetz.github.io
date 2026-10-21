@@ -206,6 +206,11 @@ FROM titles GROUP BY premiered
 HAVING avg_title_length < 3;
 ```
 
+<img src="_images/where_vs_having.png" width="1100"
+alt="Diagram showing the order in which a query is processed: all rows, then WHERE removes rows, then GROUP BY forms groups, then HAVING removes groups" />
+
+Figure 3. The difference between `WHERE` and `HAVING`. `WHERE` filters individual rows before they are grouped, while `HAVING` filters the groups after the aggregation. The diagram was generated with Claude (Anthropic) and uses a small made-up example, not the real IMDb numbers.
+
 
 ## Practice on your own
 
