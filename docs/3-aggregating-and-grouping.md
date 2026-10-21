@@ -1,26 +1,37 @@
-
 # 3. Aggregation and Grouping
 
+By the end of this section you will be able to:
+
+- summarize data with the aggregate functions `COUNT`, `SUM`, `AVG`, `MIN` and `MAX`
+- group rows with `GROUP BY` and calculate a summary for each group
+- filter rows with `WHERE` and filter groups with `HAVING`, and explain the difference
+- avoid the integer division trap when you calculate proportions and percentages
 
 ## Concepts
 
 | Command | Description | Example | Example Description |
 |----|----|----|----|
-| `GROUP BY` | Used to group rows with the same values in specified columns into summary row(s). | `SELECT column, COUNT(*) FROM table GROUP BY column` | Selects the `column` and counts the number of records in each group, grouping by the `column` |
+| `GROUP BY` | Used to group rows with the same values in specified columns into summary row(s). | `SELECT column, COUNT(*) FROM table GROUP BY column;` | Selects the `column` and counts the number of records in each group, grouping by the `column` |
+| `HAVING` | Used to filter the groups after the aggregation. It works like `WHERE`, but on the summarized data. | `SELECT column, COUNT(*) FROM table GROUP BY column HAVING COUNT(*) > 10;` | Counts the records in each group and keeps only the groups that have more than 10 records |
+| `CAST` | Used to convert a value to another data type. | `SELECT CAST(column AS REAL) FROM table;` | Returns the values of `column` as decimal numbers |
 
 
 ### Aggregate functions
 
-- COUNT
+An aggregate function takes many rows and returns a single value. When it is
+used together with `GROUP BY`, it returns one value for each group.
 
-- SUM
+| Function | Description | Example |
+|----|----|----|
+| `COUNT` | Counts rows. `COUNT(*)` counts all rows, `COUNT(column)` counts only the rows where `column` is not empty (not `NULL`). | `SELECT COUNT(*) FROM table;` |
+| `SUM` | Adds up the values of a numeric column. | `SELECT SUM(column) FROM table;` |
+| `AVG` | Calculates the average of a numeric column. | `SELECT AVG(column) FROM table;` |
+| `MIN` | Returns the smallest value of a column. | `SELECT MIN(column) FROM table;` |
+| `MAX` | Returns the largest value of a column. | `SELECT MAX(column) FROM table;` |
 
-- AVG
-
-- MIN
-
-- MAX
-
+|  |  |
+|--|------------|
+| Tip | `SUM`, `AVG`, `MIN`, `MAX` and `COUNT(column)` skip the empty (`NULL`) values. For example, `AVG(runtimeMinutes)` is the average of only the titles that have a runtime. `COUNT(*)` does not skip anything, it counts every row. |
 
 ### GROUP BY
 
@@ -36,6 +47,11 @@ together with aggregation functions such as `COUNT`, `SUM`, `AVG`,
 `MIN`, and `MAX`. These functions let us perform calculations on each
 group of data.
 
+A good rule of thumb: every column in the `SELECT` part should either be
+in the `GROUP BY` or be inside an aggregate function. SQLite does not
+stop you if you break this rule, but the value it shows for the other
+columns is taken from an arbitrary row of the group, so it is not
+reliable.
 
 ### HAVING
 
@@ -45,6 +61,19 @@ single query can have both a `WHERE` clause and a `HAVING` clause. The
 `WHERE` clause will filter the data *before* aggregation, and the
 `HAVING` clause will filter the data *after* aggregation.
 
+This is also the reason why you cannot use an aggregate function in
+`WHERE`: when `WHERE` runs, the groups do not exist yet. The database
+processes the parts of a query in this logical order:
+
+| Order | Part | What happens |
+|--|----|-------|
+| 1 | `FROM` | Picks the table |
+| 2 | `WHERE` | Filters the rows |
+| 3 | `GROUP BY` | Forms the groups |
+| 4 | `HAVING` | Filters the groups |
+| 5 | `SELECT` | Calculates the columns and aggregates to show |
+| 6 | `ORDER BY` | Sorts the result |
+| 7 | `LIMIT` | Keeps only the first rows |
 
 ## Demo
 
