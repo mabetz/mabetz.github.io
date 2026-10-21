@@ -307,6 +307,11 @@ FROM basics GROUP BY startYear
 HAVING avg_title_length < 3;
 ```
 
+When querying the IMDb dataset, we found a title with `startYear = 2115`: 100 Years, a short film directed by Robert Rodriguez and starring John Malkovich. The film was produced in 2015 but is scheduled to be released on November 18, 2115, exactly 100 years later. It is being kept in a specially designed safe that is intended to remain locked until its release.
+
+This is a useful reminder that unusual values in a dataset are not necessarily errors. Understanding the context and meaning of a variable is important before treating an observation as an outlier or a data quality issue.
+
+
 |  |  |
 |--|------------|
 | Tip | SQLite lets us use the alias `avg_title_length` in `HAVING`. Some other databases (for example PostgreSQL) do not, and you would need to write the whole `AVG(...)` expression again in `HAVING`. This query calculates the words of all 12.7 million titles, so it can take a while. Also note that it assumes the words are separated by a single space. |
