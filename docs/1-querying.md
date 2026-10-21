@@ -292,6 +292,10 @@ Now focus on the `People` table.
 
 |  |  |
 |--|------------|
-| Hint | For 1.3 use the `sqlite_master` query from the demo. For 1.5 and 1.6 use `PRAGMA table_info(People);`. For 1.8 you do not need any new command: select the columns that contain the first and last name together with `playerID`, use a larger `LIMIT`, and look for the row you need. |
+| Hint | For 1.3 use the `sqlite_master` query from the demo. 
+
+For 1.5 and 1.6 use `PRAGMA table_info(People);`. 
+
+For 1.8 you do not need any new command: select the columns that contain the first and last name together with `playerID`, increase the number after `LIMIT` (for example to 20 or 50) until you see the row you are looking for. |
 
 
