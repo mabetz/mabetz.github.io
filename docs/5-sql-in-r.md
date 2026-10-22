@@ -30,8 +30,8 @@ In R, we pass the SQL query as a string enclosed in quotes. The SQL syntax remai
 
 ## Demo
 
-|-----------|---------------------------------------|
-| Important | Please use `seminar-r` for this part. |
+| **Important** | Please use `seminar-r` for this part. |
+|:--------------|:--------------------------------------|
 
 We will show how to make SQL calls from R, so that we can (for example)
 make plots related to our SQL queries. When we make a SQL call in R, the
