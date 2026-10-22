@@ -316,6 +316,16 @@ This is a useful reminder that unusual values in a dataset are not necessarily e
 |--|------------|
 | Tip | SQLite lets us use the alias `avg_title_length` in `HAVING`. Some other databases (for example PostgreSQL) do not, and you would need to write the whole `AVG(...)` expression again in `HAVING`. This query calculates the words of all 12.7 million titles, so it can take a while. Also note that it assumes the words are separated by a single space. |
 
+### Common mistakes
+
+| Mistake | What happens | Fix |
+|----|----|----|
+| Using an aggregate function in `WHERE`, such as `WHERE COUNT(*) > 10` | `misuse of aggregate` error | Filter groups with `HAVING COUNT(*) > 10` |
+| Selecting a column that is not in `GROUP BY` and not inside an aggregate function | No error, but the value comes from an arbitrary row of the group | Add the column to `GROUP BY` or wrap it in an aggregate function |
+| Dividing integer by integer, such as `COUNT(*)/29` | The result is cut to a whole number, often 0 | Convert one number with `CAST(... AS REAL)` or write `100.0 * ...` |
+| Grouping by a column that stores lists, such as `genres` | One group for each combination, not each single value | Use `WHERE genres LIKE '%Action%'` to look at one value |
+| Expecting `COUNT(column)` and `COUNT(*)` to be equal | `COUNT(column)` skips empty (`NULL`) values | Use `COUNT(*)` to count rows and `COUNT(column)` to count filled values |
+| Grouping a very large table without a `WHERE` or `LIMIT` | The cell runs for a long time | Filter first, and use `LIMIT` while you explore |
 
 ## Practice on your own
 
