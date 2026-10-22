@@ -14,17 +14,9 @@ By the end of this section you will be able to:
 ## Concepts
 
 So far we wrote SQL in its own cells. In real projects, the SQL query is usually only the first step: we pull a summary out of the database and
-then keep working with it in R, for example to make a plot. The `imdbSept2026.db` database is about 22 GB, too big to load into R memory, so the idea is to let the database do the heavy work and bring back only a small result:
+then keep working with it in R, for example to make a plot. The `imdbSept2026.db` database is about 22 GB, too big to load into R memory, so the idea is to let the database do the heavy work and bring back only a small result.
 
-| Step | Where | What happens |
-|--|----|-------|
-| 1 | R | We send a SQL query to the database as a text string |
-| 2 | Database | SQLite filters, joins and aggregates millions of rows |
-| 3 | R | The small result comes back as a data frame |
-| 4 | R | We plot or reshape it with `ggplot2` and `dplyr` |
-
-The R functions we need come from the `DBI` package (and `RSQLite`, which
-provides the SQLite driver):
+The R functions we need come from the `DBI` package (and `RSQLite`, which provides the SQLite driver):
 
 | Function | Description | Example | Example Description |
 |----|----|----|----|
