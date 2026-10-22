@@ -56,52 +56,35 @@ conn <- dbConnect(RSQLite::SQLite(), "/anvil/projects/x-cis220051/data/wsds/imdb
 |--|------------|
 | Tip | To make sure we never change the data by accident, we can open the database as read-only: `dbConnect(RSQLite::SQLite(), "...", flags = RSQLite::SQLITE_RO)`. The database used for this lesson is already read-only due to file permissions. |
 
-
-
-
 Check available tables:
 
-```
+```r
 dbListTables(conn)
+```
+
+and the columns of one of them:
+
+```r
+dbListFields(conn, "basics")
 ```
 
 Write the first SQL query in R:
 
-```
-dbGetQuery(conn, "SELECT * FROM titles LIMIT 5;")
-```
-
-Start asking some questions: what type of titles Quentin Tarantino
-mainly works on (following query takes some time)
-
-```
-tarantino_types <- dbGetQuery(conn, "
-SELECT t.type, COUNT(*) AS count
-FROM titles AS t
-JOIN crew AS c ON t.title_id = c.title_id
-JOIN people AS p ON c.person_id = p.person_id
-WHERE p.name = 'Quentin Tarantino'
-GROUP BY t.type
-ORDER BY count DESC;
-")
-
-tarantino_types
+```r
+dbGetQuery(conn, "SELECT * FROM basics LIMIT 5;")
 ```
 
-Plot title types
+The result looks like a table, but it is a regular R data frame. We can store it in an object and use it like any other data frame in R:
 
-```
-ggplot(tarantino_types, aes(x = reorder(type, count), y = count)) +
-  geom_bar(stat = "identity", fill = "#0073C2FF") +
-  coord_flip() +
-  labs(title = "Types of Titles Quentin Tarantino Worked On",
-       x = "Title Type", y = "Count") +
-  theme_minimal()
+```r
+first_titles <- dbGetQuery(conn, "SELECT * FROM basics LIMIT 5;")
+
+class(first_titles)
+first_titles$primaryTitle
 ```
 
-|  |  |
-|----|----|
-| Note | SQL syntax is NOT case sensitive. However, remember that R is case sensitive, so please be careful with the capitalization of data frame and variable names. |
+
+
 
 
 ## Practice on your own
