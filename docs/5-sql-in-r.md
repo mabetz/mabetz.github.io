@@ -26,8 +26,7 @@ The R functions we need come from the `DBI` package (and `RSQLite`, which provid
 | `dbGetQuery` | Runs a SQL query and returns the result as a data frame. | `dbGetQuery(conn, "SELECT * FROM table LIMIT 5;")` | Returns the first 5 rows of `table` as a data frame |
 | `dbDisconnect` | Closes the connection. | `dbDisconnect(conn)` | Closes the connection stored in `conn` |
 
-The SQL query itself is just a text string between quotes, so the SQL we
-learned in the previous sections works here without any changes.
+In R, we pass the SQL query as a string enclosed in quotes. The SQL syntax remains the same as what we learned in the previous sections.
 
 ## Demo
 
