@@ -30,7 +30,6 @@ In R, we pass the SQL query as a string enclosed in quotes. The SQL syntax remai
 
 ## Demo
 
-|           |                                       |
 |-----------|---------------------------------------|
 | Important | Please use `seminar-r` for this part. |
 
