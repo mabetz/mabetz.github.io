@@ -2,13 +2,15 @@
 
 # 5. SQL in R
 
+<!--
 By the end of this section you will be able to:
 
 - connect to a SQLite database from R and see which tables and columns it has
 - run a SQL query from R and understand that the result is a regular R data frame
 - let SQL do the heavy work (filter, join, aggregate) and use R to plot and reshape the small result
 - measure how long a query takes and avoid re-running slow queries
-
+-->
+  
 ## Concepts
 
 So far we wrote SQL in its own cells. In real projects, the SQL query is usually only the first step: we pull a summary out of the database and
