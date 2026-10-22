@@ -329,12 +329,35 @@ This is a useful reminder that unusual values in a dataset are not necessarily e
 
 ## Practice on your own
 
-Example 1. Deliverables
+Now, you’ll practice the concepts above on your own with the Lahman
+Baseball data. Remember to start every SQL cell with `%%sql`.
 
-3.1. Write a SQL query to count the number of players born before 1900
-who are over 74 inches tall.
+```
+%sql sqlite:////anvil/projects/tdm/data/lahman/lahman.db
+```
 
-3.2. Write a SQL query to return the average weight of players grouped
-by their birth year, ordered by the average weight in descending order,
-limiting the results to 10 records.
+Example 3. Deliverables
+
+3.1. Write a SQL query to count the number of players born before 1900 who are over 74 inches tall.
+
+3.2. Write a SQL query to return the average weight of players grouped by their birth year, ordered by the average weight in descending order, limiting the results to 10 records.
+
+|  |  |
+|--|------------|
+| Hint | In 3.1 you only need one number, so you do not need `GROUP BY`: combine the two conditions in `WHERE` with `AND`. In 3.2, the question already tells you the parts of the query: `AVG` for the average, `GROUP BY` for the birth year, then `ORDER BY ... DESC` and `LIMIT`. Use the `People` table, and check the column names with `PRAGMA table_info(People);`. |
+
+More practice with the IMDb data. Connect to the database again:
+
+```
+%sql sqlite:////anvil/projects/x-cis220051/data/wsds/imdbSept2026.db
+```
+
+3.3. How many titles of each `titleType` are in the `basics` table? Show the most frequent type first.
+
+3.4. What is the average `runtimeMinutes` of movies for each `startYear`, for the years 2015 and later? Sort the result by year.
+
+3.5. Which years have more than 10,000 movies? Show the year and the number of movies. (Hint: this needs both `WHERE` and `HAVING`.)
+
+3.6. In the `ratings` table, how many titles have at least 100,000 votes (`numVotes`), and what is the average `averageRating` of these titles?
+
 
