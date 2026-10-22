@@ -83,8 +83,25 @@ class(first_titles)
 first_titles$primaryTitle
 ```
 
+Before the bigger question, a quick warm-up that is fast and ends with a plot. How many movies were released each year since 2000? SQL counts the rows and R draws the picture:
 
+```r
+movies_per_year <- dbGetQuery(conn, "
+SELECT startYear, COUNT(*) AS n
+FROM basics
+WHERE titleType = 'movie' AND startYear >= 2000 AND startYear <= 2026
+GROUP BY startYear
+ORDER BY startYear;
+")
 
+ggplot(movies_per_year, aes(x = startYear, y = n)) +
+  geom_line(color = "dodgerblue3") +
+  geom_point(color = "dodgerblue3") +
+  labs(title = "Movies Released Each Year",
+       x = "Year", y = "Number of Movies") +
+  theme_minimal()
+```
+Notice that the database returned only 27 rows, even though it looked at millions of rows to produce them. This is the main reason to use SQL before R.
 
 
 ## Practice on your own
