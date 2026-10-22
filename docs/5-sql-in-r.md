@@ -37,8 +37,6 @@ provides the SQLite driver):
 The SQL query itself is just a text string between quotes, so the SQL we
 learned in the previous sections works here without any changes.
 
-
-
 ## Demo
 
 |           |                                       |
@@ -47,21 +45,29 @@ learned in the previous sections works here without any changes.
 
 We will show how to make SQL calls from R, so that we can (for example)
 make plots related to our SQL queries. When we make a SQL call in R, the
-data is returned as an R database.
+data is returned as an R data frame.
 
-Connect to the IMDb SQLite database
+Load the libraries we will be using in R:
 
-```
-conn <- dbConnect(RSQLite::SQLite(), "/anvil/projects/tdm/data/movies_and_tv/imdb.db")
-```
-
-Also load libraries we will be using in R:
-
-```
+```r
+library(DBI)
 library(RSQLite)
 library(dplyr)
 library(ggplot2)
 ```
+
+Connect to the IMDb SQLite database
+
+```r
+conn <- dbConnect(RSQLite::SQLite(), "/anvil/projects/x-cis220051/data/wsds/imdbSept2026.db")
+```
+
+|  |  |
+|--|------------|
+| Tip | To make sure we never change the data by accident, we can open the database as read-only: `dbConnect(RSQLite::SQLite(), "...", flags = RSQLite::SQLITE_RO)`. The database used for this lesson is already read-only due to file permissions. |
+
+
+
 
 Check available tables:
 
