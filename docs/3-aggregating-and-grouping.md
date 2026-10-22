@@ -1,11 +1,13 @@
 # 3. Aggregation and Grouping
 
+<!--
 By the end of this section you will be able to:
 
 - summarize data with the aggregate functions `COUNT`, `SUM`, `AVG`, `MIN` and `MAX`
 - group rows with `GROUP BY` and calculate a summary for each group
 - filter rows with `WHERE` and filter groups with `HAVING`, and explain the difference
 - avoid the integer division trap when you calculate proportions and percentages
+-->
 
 ## Concepts
 
