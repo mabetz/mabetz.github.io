@@ -124,7 +124,7 @@ any rows, use:
 PRAGMA table_info(basics);
 ```
 
-In SQL and certain other languages like bash or batch, the asterisk (\*) acts as a wildcard that represents "everything". For instance, the command `SELECT * FROM table` retrieves all columns from the table named table, regardless of their names, data types, or values. This feature is convenient when you want to extract every piece of data from a table without listing each column one by one. When you only need a few columns, list them by name instead (for example `SELECT primaryTitle, genres FROM basics LIMIT 5;`). The result is easier to read and, on large tables, faster to produce. 
+In SQL and certain other languages like bash or batch, the asterisk (\*) acts as a wildcard that represents "everything". For instance, the command `SELECT * FROM table` retrieves all columns from the table named `table`, regardless of their names, data types, or values. This feature is convenient when you want to extract every piece of data from a table without listing each column one by one. When you only need a few columns, list them by name instead (for example `SELECT primaryTitle, genres FROM basics LIMIT 5;`). The result is easier to read and, on large tables, faster to produce. 
 
 Now, let’s check how many records are in the `name` table:
 
@@ -291,10 +291,10 @@ Now focus on the `People` table.
 
 1.8. What is Don Aase’s playerID?
 
-|  |  |
-|--|------------|
-| Hints | For 1.3 use the `sqlite_master` query from the demo. 
-| | For 1.5 and 1.6 use `PRAGMA table_info(People);`. 
-| | For 1.8 you do not need any new command: select the columns that contain the first and last name together with `playerID`, increase the number after `LIMIT` (for example to 20 or 50) until you see the row you are looking for. |
+
+Hints
+* For 1.3 use the `sqlite_master` query from the demo. 
+* For 1.5 and 1.6 use `PRAGMA table_info(People);`. 
+* For 1.8 you do not need any new command: select the columns that contain the first and last name together with `playerID`, increase the number after `LIMIT` (for example to 20 or 50) until you see the row you are looking for. |
 
 

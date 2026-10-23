@@ -54,7 +54,7 @@ another table.
 
 Let us simply `INNER JOIN` two tables first:
 
-```
+```sql
 SELECT * FROM crew AS c INNER JOIN people AS p
 ON c.person_id = p.person_id LIMIT 5;
 ```
@@ -66,7 +66,7 @@ ON c.person_id = p.person_id LIMIT 5;
 We can use the `WHERE` clause and the `IS NULL` operator to list only
 crew members who do not have a matching record in the `people` table.
 
-```
+```sql
 SELECT * FROM crew AS c LEFT JOIN people AS p
 ON c.person_id = p.person_id
 WHERE p.name IS NULL
@@ -82,7 +82,7 @@ LIMIT 20;
 
 Let us see all the movies Christopher Nolan worked on:
 
-```
+```sql
 SELECT * FROM crew
 INNER JOIN people ON crew.person_id = people.person_id
 INNER JOIN titles ON crew.title_id = titles.title_id
@@ -91,7 +91,7 @@ WHERE people.name = 'Christopher Nolan' AND titles.type = 'movie';
 
 Order them by premiered year:
 
-```
+```sql
 SELECT * FROM crew
 INNER JOIN people ON crew.person_id = people.person_id
 INNER JOIN titles ON crew.title_id = titles.title_id
@@ -103,7 +103,7 @@ Now, we want to see what type of productions (movies, video, etc.)
 Christopher Nolan is mainly working on (executing this code will take
 some time):
 
-```
+```sql
 SELECT t.type, COUNT(*) AS count
 FROM titles AS t
 JOIN crew AS c ON t.title_id = c.title_id
@@ -115,7 +115,7 @@ ORDER BY count DESC;
 
 We can find what type of movies Christopher Nolan is mainly working on:
 
-```
+```sql
 SELECT t.genres, COUNT(*) AS count
 FROM titles AS t
 JOIN crew AS c ON t.title_id = c.title_id
@@ -125,11 +125,11 @@ GROUP BY t.genres
 ORDER BY count DESC;
 ```
 
-Let us practise 'GROUP BY' and 'HAVING' with 'JOIN' by finding the
+Let us practice 'GROUP BY' and 'HAVING' with 'JOIN' by finding the
 average rating of movies by year and genre, but only for the movies with
 an average rating is greater than a certain amount.
 
-```
+```sql
 SELECT t.type, t.genres, t.premiered, AVG(r.rating) AS average_rating
 FROM ratings AS r
 LEFT JOIN titles AS t ON r.title_id = t.title_id
@@ -151,7 +151,7 @@ repeating those joins can be inefficient and hard to read. To simplify
 this, we can use the WITH clause to create a temporary table for the
 joined data and run our operations on it. The example below shows how:
 
-```
+```sql
 WITH joined_table AS (SELECT * FROM ratings AS r LEFT JOIN titles AS t ON r.title_id = t.title_id)
 
 SELECT * FROM joined_table LIMIT 5;

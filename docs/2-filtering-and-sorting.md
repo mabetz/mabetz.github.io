@@ -18,150 +18,148 @@
 
 At this point, you might guess that `tt0111161` is the ID IMDb uses to
 identify a movie or TV show. Let’s test that assumption by running a
-query on our database to find any titles in the `titles` table that
-match the `title_id` provided in the [link we used
+query on our database to find any titles in the `basics` table that
+match the `tconst` provided in the [link we used
 before](https://www.imdb.com/title/tt0111161):
 
-```
-SELECT * FROM titles
-WHERE title_id = 'tt0111161';
+```sql
+%%sql
+SELECT * FROM basics WHERE tconst = 'tt0111161';
 ```
 
 It is The Shawshank Redemption, the top rated movie in IMDb!
 
 Let’s try this one:
 
-```
-SELECT * FROM titles
-WHERE title_id = 'tt0108778';
+```sql
+%%sql
+SELECT * FROM basics WHERE tconst ='tt0108778';
 ```
 
 You can even find some episodes, when you go to search in
 <a href="https://imdb.com" class="bare">https://imdb.com</a> for your
 favorite one. For example: "the one where Rose pivots" and we see the
-episode is this one (The one where Ross moves in):
-
-<a href="https://www.imdb.com/title/tt0583486"
-class="bare">https://www.imdb.com/title/tt0583486</a>
+episode is this one (The one where Ross moves in): https://www.imdb.com/title/tt0583486 
 
 
 ![GitHub Pages](_images/friends-ross.gif)
+
 Figure 1. Image from https://tenor.com/search/ross-pivot-gifs
 
-<table>
-<colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
-</colgroup>
-<tbody>
-<tr>
-<td class="icon">Note</td>
-<td class="content"><p>We can also check for how many unique types we
-have in our dataset by using <code>SELECT DISTINCT</code>:</p>
-<pre class="highlight" data-lang="sql"><code>SELECT DISTINCT type
-FROM titles
-ORDER BY type;</code></pre>
-<p>If you want to see how many unique combinations of <code>type</code>
-and <code>genres</code> exist, you can use the <code>COUNT()</code>
-function by combining both columns into one expression using the
-concatenation operator <code>||</code> and count the distinct values in
-a single line:</p>
-<pre class="highlight" data-lang="sql"><code>%%sql
-SELECT COUNT(DISTINCT type || genres) FROM titles;</code></pre></td>
-</tr>
-</tbody>
-</table>
-
-Let’s check if `title_id` also works for `episodes` table, too:
-
+```sql
+%%sql
+SELECT * FROM basics WHERE tconst ='tt0583486';
 ```
-SELECT * FROM episodes
-WHERE episodes_title_id = 'tt0108778';
+
+Notice that the first query for `tt0108778` represents the series because `titleType = tvSeries` but the second query for the specific episode  `tt0583486` has `titleType = tvEpisode`
+
+We can also check for how many unique types we have in our dataset by using `SELECT DISTINCT`
+
+```sql
+%%sql
+SELECT DISTINCT titleType
+FROM basics
+ORDER BY titleType;
+```
+
+If you want to see how many unique combinations of `type`
+and `genres` exist, you can use the `COUNT()`
+function by combining both columns into one expression using the
+concatenation operator `||` and count the distinct values in
+a single line:
+
+```sql
+%%sql
+SELECT COUNT(DISTINCT titleType || genres) FROM basics;
+```
+
+Let’s check if `tconst` also works for `episode` table, too:
+
+```sql
+%%sql
+PRAGMA table_info(episode);
+```
+
+```sql
+%%sql
+SELECT * FROM episode WHERE tconst = 'tt0108778';
 ```
 
 No, since it is the title of the show not the title of the episode. Let
-us change it to `show_title_id`:
+us change it to `parentTconst`:
 
-```
-SELECT * FROM episodes
-WHERE show_title_id = 'tt0108778';
+```sql
+%%sql
+SELECT * FROM episode WHERE parentTconst = 'tt0108778';
 ```
 
-If you try `show_title_id` for `tt0111161`, you will not get any result,
+If you try `parentTconst` for `tt0111161`, you will not get any result,
 since it is a movie instead of a show.
 
 Let’s see who was staring in Friends:
 
-```
-SELECT * FROM crew
-WHERE show_title_id = 'tt0108778';
+```sql
+%%sql
+SELECT * FROM crew 
+WHERE tconst = 'tt0108778';
 ```
 
 We can create a new code cell and write a SQL query to select all
-columns from the `titles` table where the `original_title` is 'Friends'
-and premiered 1994:
+columns from the `episode` table where the `parentTconst` is 'tt0108778' (Friends)
+and premiered 1994 (season #1):
 
+```sql
+%%sql
+SELECT * FROM basics 
+WHERE originalTitle = 'Friends' AND startYear = 1994;
 ```
-SELECT * FROM titles
-WHERE original_title = 'Friends' AND premiered = '1994';
+
+You can use the `AND` operator to combine multiple conditions within a `WHERE` clause. Simply place the operator between each condition you want to evaluate. You can also use other logical operators. For example, `OR` checks if at least one condition is true, and `NOT` is used to reverse a condition.
+
+However, orders matters in here. The order of evaluation (operator
+precedence) for logical operators is:
+
+    `NOT` — evaluated first
+    `AND` — evaluated second
+    `OR` — evaluated last
+
+
+You can test it with the following two commands:
+
+```sql
+%%sql
+SELECT COUNT(*) FROM basics
+WHERE originalTitle = 'Friends' OR startYear = 1994 AND endYear = 2004;
 ```
 
-<table>
-<colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
-</colgroup>
-<tbody>
-<tr>
-<td class="icon">Note</td>
-<td class="content"><p>You can use the <code>AND</code> operator to
-combine multiple conditions within a <code>WHERE</code> clause. Simply
-place the operator between each condition you want to evaluate. You can
-also use other logical operators. For example, <code>OR</code> checks if
-at least one condition is true, and <code>NOT</code> is used to reverse
-a condition.</p>
-<p>However, orders matters in here. The order of evaluation (operator
-precedence) for logical operators is:</p>
-<p><code>NOT</code> — evaluated first<br />
-<code>AND</code> — evaluated second<br />
-<code>OR</code> — evaluated last<br />
-</p>
-<p>You can test it with the following two commands:</p>
-<pre class="highlight" data-lang="sql"><code>SELECT COUNT(*) FROM titles
-WHERE original_title = &#39;Friends&#39; OR premiered = 1994 AND ended = 2004;</code></pre>
-<pre class="highlight" data-lang="sql"><code>SELECT COUNT(*) FROM titles
-WHERE original_title = &#39;Friends&#39; AND premiered = 1994 OR ended = 2004;</code></pre></td>
-</tr>
-</tbody>
-</table>
+```sql
+%%sql
+SELECT COUNT(*) FROM basics
+WHERE originalTitle = 'Friends' AND startYear = 1994 OR endYear = 2004;
+```
 
-We can ask more questions and use a new command `ORDER BY`: Find the top
+We can ask more questions and use a new command `ORDER BY`. The default is to sort by ascending order so use `DESC` to sort by descending order. Find the top
 10 longest movies in the dataset:
 
-```
-SELECT * FROM titles
-WHERE type = 'movie' ORDER BY runtime_minutes DESC LIMIT 10;
-```
-
-We can even have some cluse which movies are coming soon:
-
-```
-SELECT * FROM titles
-WHERE type = 'movie' ORDER BY premiered DESC LIMIT 10;
+```sql
+%%sql
+SELECT * FROM basics
+WHERE titleType = 'movie' AND runtimeMinutes != '\N'
+ORDER BY runtimeMinutes DESC LIMIT 10;
 ```
 
-|  |  |
-|----|----|
-| Note | You should generally use the `LIMIT` command to restrict the number of rows returned by your query. This is especially important when working with large datasets, as it helps improve performance and reduces the amount of data that needs to be processed. |
+We can even have some clues which movies are coming soon:
 
-Example 1. Deliverables
+```sql
+%%sql
+SELECT * FROM basics
+WHERE titleType = 'movie' AND startYear != '\N'
+ORDER BY startYear DESC LIMIT 10;
+```
 
-1.1. Run the SQL query to see all tables in the IMDb dataset.\
-1.2. Write a SQL query to select all columns from the `titles` table,
-limiting the results to 10 records.\
-1.3. Write a SQL query to find the duration of Titanic movie premiered
-in 1997?\
-1.4. What is the oldest movie according to this database?
+
+Note:  You should generally use the `LIMIT` command to restrict the number of rows returned by your query. This is especially important when working with large datasets, as it helps improve performance and reduces the amount of data that needs to be processed. 
+
 
 
 ## Practice on your own
