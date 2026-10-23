@@ -27,18 +27,18 @@ computer for this step.
 
 2. Retrieve the 6 digit code sent to your email and enter it. 
 
-      If your email domain is registered with ACCESS, it will allow you to proceed automatically with the next steps. Most university .edu emails should be registered. However, if ACCESS returns with a red box at the top that says "UNKNOWN EMAIL DOMAIN" - please do not proceed further. Skip to the end (past step 8) and instead only complete the information survey below. Please email Maggie at betz(AT)purdue.edu for alternative steps. DO NOT fill out the form for an organization request or open a ticket. This will be lengthy and not resolve the issue. 
+      If your email domain is registered with ACCESS, it will allow you to proceed automatically with the next steps. Most university .edu emails should be registered. However, if ACCESS returns with a red box at the top that says "UNKNOWN EMAIL DOMAIN" - please do not proceed further.Skip to the end (past step 8) and instead only complete the information survey. Please email Maggie at betz(AT)purdue.edu for alternative steps. DO NOT fill out the form for an organization request or open a ticket. This will be lengthy and not resolve the issue. 
 
 3. Next you will be asked to enter your Home Organization. If you are a student or have a .edu email, select your institution. If you cannot find your organization in the list, email Maggie at betz(AT)purdue.edu for alternative steps. 
 
 4. Compete the required registration information. 
-      First name: [enter legal first name]
-      Last name: [enter legal last name]
-      Institution: [if you are part of an academic institution, please enter that. If you cannot find an organization, you can try putting "Purdue University".]
-      Department: [required]
-      Academic status: [required]
-      Country of Residence: [this is where you currently live - hopefully this is US because accounts are only created for people currently living in the US due to NSF policy].
-      Country of Citizenship: [enter relevant country]
+      * First name: [enter legal first name]
+      * Last name: [enter legal last name]
+      * Institution: [if you are part of an academic institution, please enter that.]
+      * Department: [required]
+      * Academic status: [required]
+      * Country of Residence: [this is where you currently live - hopefully this is US because accounts are only created for people currently living in the US due to NSF policy].
+      * Country of Citizenship: [enter relevant country]
 
 5. You will be asked to re-authenticate your session by logging in again, so we must do a few additional steps before actually completing the profile. You will either see a screen where you will just click `AUTHENTICATE WITH CILOGON` Or you will see a screen prompting you to select an identity provider. You must leave it as the default of ACCESS CI (XSEDE)!
 

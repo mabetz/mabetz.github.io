@@ -331,8 +331,7 @@ This is a useful reminder that unusual values in a dataset are not necessarily e
 
 ## Practice on your own
 
-Now, you’ll practice the concepts above on your own with the Lahman
-Baseball data. Remember to start every SQL cell with `%%sql`.
+Now, you’ll practice the concepts above on your own with the Lahman Baseball data. Remember to start every SQL cell with `%%sql`.
 
 ```
 %sql sqlite:////anvil/projects/tdm/data/lahman/lahman.db

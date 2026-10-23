@@ -1,14 +1,10 @@
 
 # 6. Real-World Querying Challenge
 
-We encourage you to take what you’ve learned today and continue
-practicing with the below SQL databases throughout the remainder of the
-conference. Maggie (betz(AT)purdue.edu) and Fulya
-(fgokalp(AT)purdue.edu) will be present at the conference through Friday
+We encourage you to take what you’ve learned today and continue practicing with the below SQL databases throughout the remainder of the conference. Maggie and Fulya will be present at the conference through Friday
 if you have questions.
 
-We will remove users from Anvil on Monday so please be sure to download
-any notes, documents, or files by then.
+We will remove users from Anvil on Monday, November 2 so please be sure to download any notes, documents, or files by then.
 
 
 ## Other SQL databases already on Anvil
@@ -61,16 +57,11 @@ Below are various databases that are available on Anvil.
 
 ## Additional resources
 
-- You can find more information about SQL commands in the [SQLite
-  documentation](https://www.sqlite.org/lang.html).
+- You can find more information about SQL commands in the [SQLite documentation](https://www.sqlite.org/lang.html).
 
-- The Data Mine, Example Book, dedicated SQL page:
-  <a href="https://the-examples-book.com/tools/sql/"
-  class="bare">https://the-examples-book.com/tools/sql/</a>
 
-- The following tutorial provides a step-by-step guide on how to
-  download and use SQLite tools on your computer:
-  <a href="https://www.sqlitetutorial.net/download-install-sqlite/"
-  class="bare">https://www.sqlitetutorial.net/download-install-sqlite/</a>
+- The following tutorial provides a step-by-step guide on how to  download and use SQLite tools on your computer: <a href="https://www.sqlitetutorial.net/download-install-sqlite/"  class="bare">https://www.sqlitetutorial.net/download-install-sqlite/</a>
+
+- W3 Schools offers [helpful tutorials on SQL](https://www.w3schools.com/sql/default.asp) too. 
 
 

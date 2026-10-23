@@ -44,8 +44,9 @@ episode is this one (The one where Ross moves in):
 <a href="https://www.imdb.com/title/tt0583486"
 class="bare">https://www.imdb.com/title/tt0583486</a>
 
-<img src="friends-ross.gif" width="292" height="100"
-alt="Image from https://tenor.com/search/ross-pivot-gifs" />
+
+![GitHub Pages](_images/friends-ross.gif)
+Figure 1. Image from https://tenor.com/search/ross-pivot-gifs
 
 <table>
 <colgroup>

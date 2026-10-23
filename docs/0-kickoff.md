@@ -26,11 +26,6 @@ Wednesday, October 28, 2026, 8:00 AM to noon
 | On your own         |         | 6\. Real-World Querying Challenge |
 
 
-![GitHub Pages](_images/sql_meme.jpg)
-Figure 1. SQL Meme
-
-
-
 ## Introductions
 
 - Fulya (fgokalp(AT)metu.edu.tr)
@@ -40,13 +35,15 @@ Figure 1. SQL Meme
 - Participants
 
 
-
 ## About Structured Query Language (SQL)
 
 Structured Query Language (SQL) is a language used for querying and manipulating data in a database and it provides a relational database management system. SQL allows users to efficiently create, read, update, and delete data in databases. It is widely used across applications, from small projects to large-scale industry systems. For data analysts, data scientists, and software developers, understanding SQL is essential for working effectively with databases.
 
 We use [SQLite](https://sqlite.org), which does not require a server to run. The database is built into the application, and the app reads from and writes to the database files directly on disk. SQLite source code is public and free to everyone.
 
+
+![GitHub Pages](_images/sql_meme.jpg)
+Figure 1. SQL Meme
 
 
 ## Datasets

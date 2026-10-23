@@ -164,7 +164,12 @@ SELECT * FROM joined_table LIMIT 5;
 
 ## Practice on your own
 
-Example 1. Deliverables
+Continue using the Lahman Baseball data for the practice questions. 
+
+```
+%sql sqlite:////anvil/projects/tdm/data/lahman/lahman.db
+```
+Example 4. Deliverables
 
 4.1. Look at first 5 records in at least 3 tables in the Lahman dataset,
 not including the People table.

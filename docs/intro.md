@@ -2,7 +2,7 @@
 # Applied SQL for Data Analysis: A Practical Introduction to a Key Data Skill
 
 This page was prepared for the 2026 Women in Statistics and Data Science
-conference. You are welcome to use it to practice working with SQLite.
+conference.
 
 
 ## Course Logistics
