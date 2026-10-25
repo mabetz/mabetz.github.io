@@ -211,6 +211,25 @@ Example 1. Deliverables
 
 5.2. Run `SELECT * FROM People LIMIT 10;` with `dbGetQuery()` and store the result in an object. What is the class of the object, and how many columns does it have? R may print a warning about mixed types: what does it mean? (see the hint)
 
+Two ways to avoid the warning:
+
+```r
+# 1. select only the columns you need
+people_small <- dbGetQuery(lahman, "
+SELECT playerID, nameFirst, nameLast, birthYear, height, weight
+FROM People
+LIMIT 10;
+")
+
+# 2. keep the death column, but turn the empty text into NULL and the rest into integers
+people_death <- dbGetQuery(lahman, "
+SELECT playerID, nameFirst, nameLast,
+       CAST(NULLIF(deathYear, '') AS INTEGER) AS deathYear
+FROM People
+LIMIT 10;
+")
+```
+
 5.3. Count the number of players for each value of `bats` (the batting side of a player) in the `people` table and make a bar plot of the result with `ggplot2`. Leave the players with an empty `bats` value out of the plot. Do the filtering in the SQL query, not in R or `ggplot2`: the database removes these rows before the result is sent to R, which is faster and keeps the result small. (Hint: use a `WHERE` condition, for example `WHERE bats IN ('R', 'L', 'B')`.)
 
 5.4. Find the total number of home runs (`HR`) hit in each season (`yearID`) since 1950 from the `Batting` table and make a line plot. What do you notice?
