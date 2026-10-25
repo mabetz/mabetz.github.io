@@ -133,7 +133,10 @@ with many votes, so the database only has to look up those few titles in
 
 |  |  |
 |--|------------|
-| Tip | A query is fast when the database can jump directly to the rows it needs. Every table in `imdbSept2026.db` has an index that starts with its ID column (`tconst`, `titleId` or `nconst`), so joining on `tconst`, as we did here, is fast. Searching the `principals` table (more than 100 million rows) for a person by `nconst` cannot use that index, so the database has to read the whole table. For example, the following test, showing the type of titles Quentin Tarantino mainly works on (do not run it yet): 
+| Tip | A query is fast when the database can jump directly to the rows it needs. Every table in `imdbSept2026.db` has an index that starts with its ID column (`tconst`, `titleId` or `nconst`), so joining on `tconst`, as we did here, is fast. Searching the `principals` table (more than 100 million rows) for a person by `nconst` cannot use that index, so the database has to read the whole table. For example, the following query, shows the type of titles Quentin Tarantino mainly works on. In this test, finding all the title types of one person this way took about 6.5 minutes (391 seconds), which is too long for a live demo. |
+
+```r
+# For demonstration purposes, do not run it
 
 system.time(
   tarantino_types <- dbGetQuery(conn, "
@@ -146,8 +149,8 @@ GROUP BY b.titleType
 ORDER BY n DESC;
 ")
 )
+```
 
-In this test, finding all the title types of one person this way took about 6.5 minutes (391 seconds), which is too long for a live demo. |
 
 |  |  |
 |--|------------|
