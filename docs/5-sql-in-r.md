@@ -199,6 +199,28 @@ dbDisconnect(conn)
 
 ## Practice on your own
 
+Now you will practice SQL in R with the Lahman Baseball data. Use the `seminar-r` kernel, load the libraries first (`DBI`, `RSQLite`, `dplyr`, `ggplot2`), and connect to the Lahman database:
+
+```r
+lahman <- dbConnect(RSQLite::SQLite(), "/anvil/projects/tdm/data/lahman/lahman.db")
+```
+
+Example 1. Deliverables
+
+5.1. List the tables of the database with `dbListTables()`. How many tables are there? Then list the columns of the `People` table with `dbListFields()`.
+
+5.2. Run `SELECT * FROM People LIMIT 10;` with `dbGetQuery()` and store the result in an object. What is the class of the object, and how many columns does it have? R may print a warning about mixed types: what does it mean? (see the hint)
+
+5.3. Count the number of players for each value of `bats` (the batting side of a player) in the `people` table and make a bar plot of the result with `ggplot2`. Leave the players with an empty `bats` value out of the plot. Do the filtering in the SQL query, not in R or `ggplot2`: the database removes these rows before the result is sent to R, which is faster and keeps the result small. (Hint: use a `WHERE` condition, for example `WHERE bats IN ('R', 'L', 'B')`.)
+
+5.4. Find the total number of home runs (`HR`) hit in each season (`yearID`) since 1950 from the `Batting` table and make a line plot. What do you notice?
+
+|  |  |
+|--|------------|
+| Hint | In 5.3 and 5.4 the SQL is the same as in the aggregation section: `GROUP BY` with `COUNT(*)` or `SUM()`. The warning in 5.2 appears because the players who are alive have empty text instead of a number in the death columns, so R finds text and numbers in the same column. It is only a warning, the query worked. To avoid it, select only the columns you need. |
+
+When you are done, close the connection with `dbDisconnect(lahman)`.
+
 
 
 
