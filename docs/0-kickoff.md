@@ -37,7 +37,13 @@ Wednesday, October 28, 2026, 8:00 AM to noon
 
 ## About Structured Query Language (SQL)
 
+
+
 Structured Query Language (SQL) is a language used for querying and manipulating data in a database and it provides a relational database management system. SQL allows users to efficiently create, read, update, and delete data in databases. It is widely used across applications, from small projects to large-scale industry systems. For data analysts, data scientists, and software developers, understanding SQL is essential for working effectively with databases.
+
+The language was created by IBM developers Donald Chamberlin and Raymond Boyce in the 1970s and was originally named SEQUEL (**S**tructured **E**nglish **Que**ry **L**anguage). IBM was forced to change the name to SQL (**S**tructured **Q**uery **L**anguage) after a trademark infringement from the UK-based Hawker Siddeley aircraft company.
+
+SQL is officially pronounced as individual letters, "S-Q-L", but the pronunciation "sequel" is  widely used and accepted as well. 
 
 We use [SQLite](https://sqlite.org), which does not require a server to run. The database is built into the application, and the app reads from and writes to the database files directly on disk. SQLite source code is public and free to everyone.
 
@@ -129,5 +135,5 @@ database, we recommend having two notebooks open:
 3. To run a cell, you can either select the "play" button in the top menu, or simultaneously hit the following keys: 
 
         On Mac: cmd + return 
-        One Windows: shift + enter
+        On Windows: shift + enter
 

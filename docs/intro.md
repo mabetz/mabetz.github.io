@@ -28,4 +28,5 @@ JupyterLab on [Anvil](https://www.rcac.purdue.edu/compute/anvil), a supercompute
 
 
 
+Shortcut link: https://tinyurl.com/sqlwsds
 
