@@ -267,7 +267,7 @@ Now, you’ll practice the concepts above on your own with the Lahman Baseball d
 
 Remember to start every SQL cell with `%%sql`.
 
-```
+```sql
 %sql sqlite:////anvil/projects/tdm/data/lahman/lahman.db
 ```
 

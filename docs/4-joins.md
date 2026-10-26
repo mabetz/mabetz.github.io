@@ -38,10 +38,6 @@ Figure 1. 4 types of SQL `JOINS`
 
 ### Primary and foreign keys
 
-|           |                                    |
-|-----------|------------------------------------|
-| Important | Maggie still needs to add content. |
-
 A primary key is a unique identifier for every record in a table. It
 cannot be left `NULL` and every row for this column must be unique.
 
@@ -55,8 +51,9 @@ another table.
 Let us simply `INNER JOIN` two tables first:
 
 ```sql
-SELECT * FROM crew AS c INNER JOIN people AS p
-ON c.person_id = p.person_id LIMIT 5;
+%%sql
+SELECT * FROM crew AS c INNER JOIN name AS n
+ON c.directors = n.nconst LIMIT 5;
 ```
 
 |  |  |
@@ -64,18 +61,36 @@ ON c.person_id = p.person_id LIMIT 5;
 | Note | This context tells SQL to add all columns from both tables, and then match up the rows based on the common column specified in the `ON` clause. |
 
 We can use the `WHERE` clause and the `IS NULL` operator to list only
-crew members who do not have a matching record in the `people` table.
+crew members who do not have a matching record in the `people` table by using `LEFT JOIN`.
 
 ```sql
-SELECT * FROM crew AS c LEFT JOIN people AS p
-ON c.person_id = p.person_id
-WHERE p.name IS NULL
+%%sql
+SELECT * FROM crew AS c LEFT JOIN name AS n
+ON c.directors = n.nconst
+WHERE n.primaryName IS NULL
 LIMIT 20;
 ```
 
 |  |  |
 |----|----|
-| Note | `RIGHT JOIN` is the opposite of a `LEFT JOIN`, but SQLite does not support it natively. If you need to use a right join, you can typically just use a left join with the order of the tables flipped. Additionally, there is an `OUTER JOIN`, which is a combination of `LEFT JOIN` and `RIGHT JOIN`. It returns all rows from both tables, with NULLs in places where there is no match. However, SQLite does not support FULL OUTER JOIN natively either. |
+| Note | `RIGHT JOIN` is the opposite of a `LEFT JOIN`, but SQLite does not support it natively. If you need to use a right join, you can typically just use a left join with the order of the tables flipped. Additionally, there is an `OUTER JOIN`, which is a combination of `LEFT JOIN` and `RIGHT JOIN`. It returns all rows from both tables, with NULLs in places where there is no match. However, SQLite does not support FULL OUTER JOIN natively either. By default, `JOIN` returns `INNER JOIN`. |
+
+
+Let's look at the movies with at least 2,000,000 votes.
+
+```sql
+%%sql
+SELECT * FROM basics as b JOIN ratings AS r
+ON b.tconst = r.tconst WHERE numVotes > 2000000 LIMIT 10;
+```
+What was the most popular movie (highest rating) in a specific year that had at least 10,000 reviews? 
+
+```sql
+%%sql
+SELECT * FROM basics as b JOIN ratings AS r ON b.tconst = r.tconst
+WHERE (b.startYear = 2020) AND (b.titleType = 'movie') AND (numVotes > 10000) ORDER BY r.averageRating DESC LIMIT 10;
+```
+You can see that Hamilton is one of the top movies of 2020. 
 
 
 ### Join three tables
@@ -83,27 +98,31 @@ LIMIT 20;
 Let us see all the movies Christopher Nolan worked on:
 
 ```sql
+%%sql
 SELECT * FROM crew
-INNER JOIN people ON crew.person_id = people.person_id
-INNER JOIN titles ON crew.title_id = titles.title_id
-WHERE people.name = 'Christopher Nolan' AND titles.type = 'movie';
+INNER JOIN name ON crew.directors = name.nconst
+INNER JOIN basics ON crew.tconst = basics.tconst
+WHERE name.primaryName = 'Christopher Nolan' AND basics.titleType = 'movie';
 ```
 
 Order them by premiered year:
 
 ```sql
+%%sql
 SELECT * FROM crew
-INNER JOIN people ON crew.person_id = people.person_id
-INNER JOIN titles ON crew.title_id = titles.title_id
-WHERE people.name = 'Christopher Nolan' AND titles.type = 'movie'
-ORDER BY titles.premiered;
+INNER JOIN name ON crew.directors = name.nconst
+INNER JOIN basics ON crew.tconst = basics.tconst
+WHERE name.primaryName = 'Christopher Nolan' AND basics.titleType = 'movie'
+ORDER BY basics.startYear;
 ```
+
 
 Now, we want to see what type of productions (movies, video, etc.)
 Christopher Nolan is mainly working on (executing this code will take
 some time):
 
 ```sql
+%%sql
 SELECT t.type, COUNT(*) AS count
 FROM titles AS t
 JOIN crew AS c ON t.title_id = c.title_id
@@ -112,31 +131,36 @@ WHERE p.name = 'Christopher Nolan'
 GROUP BY t.type
 ORDER BY count DESC;
 ```
+He's done 14 movies and 3 shorts. 
 
 We can find what type of movies Christopher Nolan is mainly working on:
 
 ```sql
-SELECT t.genres, COUNT(*) AS count
-FROM titles AS t
-JOIN crew AS c ON t.title_id = c.title_id
-JOIN people AS p ON c.person_id = p.person_id
-WHERE p.name = 'Christopher Nolan' AND t.type = 'movie'
-GROUP BY t.genres
+%%sql
+SELECT b.genres, COUNT(*) AS count
+FROM basics AS b
+JOIN crew AS c ON b.tconst = c.tconst
+JOIN name AS n ON c.directors = n.nconst
+WHERE n.primaryName = 'Christopher Nolan' AND b.titleType = 'movie'
+GROUP BY b.genres
 ORDER BY count DESC;
 ```
 
-Let us practice 'GROUP BY' and 'HAVING' with 'JOIN' by finding the
-average rating of movies by year and genre, but only for the movies with
-an average rating is greater than a certain amount.
+Let us practice 'GROUP BY' and 'HAVING' with 'JOIN'.
+
+Find the top rated movie names of that premiered in 2000 or after with an average rating of 8 or grater with at least 100,000 votes.
 
 ```sql
-SELECT t.type, t.genres, t.premiered, AVG(r.rating) AS average_rating
+%%sql
+SELECT b.primaryTitle, b.titleType, b.genres, b.startYear, r.averageRating, r.numVotes
 FROM ratings AS r
-LEFT JOIN titles AS t ON r.title_id = t.title_id
-WHERE t.type = 'movie'
-GROUP BY t.genres, t.premiered
-HAVING t.premiered = 2000 AND average_rating > 8;
+LEFT JOIN basics AS b ON r.tconst = b.tconst
+WHERE b.titleType = 'movie'
+GROUP BY b.genres, b.startYear
+HAVING b.startYear >= 2000 AND r.averageRating > 8 AND r.numVotes > 100000
+ORDER BY r.averageRating DESC;
 ```
+The top 3 movies of the 2000's are the 3 Lord of the Rings movies. 
 
 |  |  |
 |----|----|
@@ -152,6 +176,7 @@ this, we can use the WITH clause to create a temporary table for the
 joined data and run our operations on it. The example below shows how:
 
 ```sql
+%%sql
 WITH joined_table AS (SELECT * FROM ratings AS r LEFT JOIN titles AS t ON r.title_id = t.title_id)
 
 SELECT * FROM joined_table LIMIT 5;
@@ -159,14 +184,14 @@ SELECT * FROM joined_table LIMIT 5;
 
 |  |  |
 |----|----|
-| Note | This temporary table joined_data will only exist for the duration of the query (the current code cell in this case). If you want to make it permanent, you can use the `CREATE TABLE` command instead of `WITH`, with the exact same syntax. However, in this case, you will not be able to do this on the IMDB or Lahman dataset as it is stored as a read-only database in anvil. |
+| Note | This temporary table joined_data will only exist for the duration of the query (the current code cell in this case). If you want to make it permanent, you can use the `CREATE TABLE` command instead of `WITH`, with the exact same syntax. However, in this case, you will not be able to do this on the IMDb or Lahman dataset as it is stored as a read-only database in Anvil. |
 
 
 ## Practice on your own
 
 Continue using the Lahman Baseball data for the practice questions. 
 
-```
+```sql
 %sql sqlite:////anvil/projects/tdm/data/lahman/lahman.db
 ```
 Example 4. Deliverables
@@ -186,7 +211,7 @@ playerID column, and limit the results to the first 5 records.
 return the average salary of players grouped by their weight, sorted in
 descending order, limiting the results to 10 records.
 
-4.6. WriteJOIN command to combine the `Batting` table with the `People`
+4.6. Write a JOIN command to combine the `Batting` table with the `People`
 table. Answer the next questions with this info.
 
 4.7. Write a SQL query to find how many times Babe Ruth reached the home

@@ -122,3 +122,12 @@ database, we recommend having two notebooks open:
     utilize the Lahman baseball data. Title this file "practice.ipynb"
     or "baseball.ipynb".
 
+## Jupyter Notebook tips 
+
+1. Each executable command should have it's own cell. 
+2. You can create `code` cells or `Markdown` cells but changing the type of each cell at the top menu. To write text in a `code` cell, make sure to start your line with `#`. You do not need to do this for a `Markdown` cell. 
+3. To run a cell, you can either select the "play" button in the top menu, or simultaneously hit the following keys: 
+
+        On Mac: cmd + return 
+        One Windows: shift + enter
+

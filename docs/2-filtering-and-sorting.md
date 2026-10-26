@@ -164,6 +164,12 @@ Note:  You should generally use the `LIMIT` command to restrict the number of ro
 
 ## Practice on your own
 
+Now, you’ll practice the concepts above on your own with the Lahman Baseball data.
+
+```sql
+%sql sqlite:////anvil/projects/tdm/data/lahman/lahman.db
+```
+
 Example 2. Deliverables
 
 2.1. Write a SQL query to select all columns from the People table where
@@ -182,6 +188,6 @@ limiting the results to 10 records.
 
 2.5. Write a SQL query to select all players born after 1970, who are
 over 70 inches tall, ordered by their last name in descending order,
-limiting the results to 20 records. (This will throw an error.)
+limiting the results to 20 records. (This will throw an error. Explain the error.)
 
 
