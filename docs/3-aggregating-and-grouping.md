@@ -49,11 +49,13 @@ together with aggregation functions such as `COUNT`, `SUM`, `AVG`,
 `MIN`, and `MAX`. These functions let us perform calculations on each
 group of data.
 
+<!--
 A good rule of thumb: every column in the `SELECT` part should either be
 in the `GROUP BY` or be inside an aggregate function. SQLite does not
 stop you if you break this rule, but the value it shows for the other
 columns is taken from an arbitrary row of the group, so it is not
 reliable.
+-->
 
 ### HAVING
 
