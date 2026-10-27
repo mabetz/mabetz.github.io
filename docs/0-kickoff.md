@@ -112,7 +112,7 @@ class="bare">https://sabr.org/lahman-database/</a>
 ## Login in to Anvil
 
 Let’s launch a Jupyter session on Anvil by navigating to
-<https://notebook.anvilcloud.rcac.purdue.edu>.
+<https://notebook.anvilcloud.rcac.purdue.edu> or <https://ondemand.anvil.rcac.purdue.edu>.
 
 Use the ACCESS username that you were assigned (when you setup your
 account) and the ACCESS password that you chose. You will need to
