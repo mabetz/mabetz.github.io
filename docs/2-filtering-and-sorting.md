@@ -105,7 +105,7 @@ WHERE tconst = 'tt0108778';
 ```
 
 We can create a new code cell and write a SQL query to select all
-columns from the `episode` table where the `parentTconst` is 'tt0108778' (Friends)
+columns from the `episode` table where the `parentTconst` is `tt0108778` (Friends)
 and premiered 1994 (season #1):
 
 ```sql
