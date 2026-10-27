@@ -123,6 +123,7 @@ any rows, use:
 %%sql
 PRAGMA table_info(basics);
 ```
+`NULL` in SQL and `None` in Python both represent the absence of a value. In the `dflt_value` column, both indicate that no default value has been defined.
 
 In SQL and certain other languages like bash or batch, the asterisk (\*) acts as a wildcard that represents "everything". For instance, the command `SELECT * FROM table` retrieves all columns from the table named `table`, regardless of their names, data types, or values. This feature is convenient when you want to extract every piece of data from a table without listing each column one by one. When you only need a few columns, list them by name instead (for example `SELECT primaryTitle, genres FROM basics LIMIT 5;`). The result is easier to read and, on large tables, faster to produce. 
 
