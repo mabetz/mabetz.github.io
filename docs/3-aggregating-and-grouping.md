@@ -107,7 +107,9 @@ Add average run time in minutes for each type:
 
 ```sql
 %%sql
-SELECT titleType, COUNT(*), AVG(runtimeMinutes) FROM basics GROUP BY titleType;
+SELECT titleType, COUNT(*), AVG(runtimeMinutes)
+FROM basics
+GROUP BY titleType;
 ```
 
 The headers of the calculated columns are not easy to read. As we learned
@@ -125,7 +127,8 @@ Or we only care about the movies:
 ```sql
 %%sql
 SELECT titleType, COUNT(*) AS n, AVG(runtimeMinutes) AS avg_runtime
-FROM basics WHERE titleType = 'movie';
+FROM basics
+WHERE titleType = 'movie';
 ```
 
 Here `WHERE` keeps only the movies before the calculation, so only one
