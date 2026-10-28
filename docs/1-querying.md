@@ -294,12 +294,8 @@ Now focus on the `People` table.
 
 1.7. For a players deathYear, what is put in the column if the player is still alive?
 
-1.8. What is Don Aase’s playerID?
-
-
 Hints
 * For 1.3 use the `sqlite_master` query from the demo. 
 * For 1.5 and 1.6 use `PRAGMA table_info(People);`. 
-* For 1.8 you do not need any new command: select the columns that contain the first and last name together with `playerID`, increase the number after `LIMIT` (for example to 20 or 50) until you see the row you are looking for. |
 
 
