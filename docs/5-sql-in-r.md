@@ -13,7 +13,7 @@ By the end of this section you will be able to:
   
 ## Concepts
 
-So far we wrote SQL in its own cells. In real projects, the SQL query is usually only the first step: we pull a summary out of the database and
+So far we wrote SQL in its own cells. In real projects, the SQL query is usually only the first step. We pull a summary out of the database and
 then keep working with it in R, for example to make a plot. The `imdbSept2026.db` database is about 22 GB, too big to load into R memory, so the idea is to let the database do the heavy work and bring back only a small result.
 
 The R functions we need come from the `DBI` package (and `RSQLite`, which provides the SQLite driver):
