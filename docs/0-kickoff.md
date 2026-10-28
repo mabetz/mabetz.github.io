@@ -28,9 +28,10 @@ Wednesday, October 28, 2026, 8:00 AM to noon
 
 ## Introductions
 
-- Fulya (fgokalp(AT)metu.edu.tr)
+- Fulya fgokalp (AT) metu.edu.tr or [LinkedIn](https://www.linkedin.com/in/fulyagokalpyavuz/)
 
-- Maggie (betz(AT)purdue.edu)
+- Maggie betz (AT) purdue.edu or [LinkedIn](https://www.linkedin.com/in/margaretbetz/)
+
 
 - Participants
 

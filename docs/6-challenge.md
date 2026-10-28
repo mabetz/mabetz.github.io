@@ -6,6 +6,12 @@ if you have questions.
 
 We will remove users from Anvil on Monday, November 2 so please be sure to download any notes, documents, or files by then.
 
+Please feel welcome to reach out and connect with us. 
+
+- Fulya fgokalp (AT) metu.edu.tr or [LinkedIn](https://www.linkedin.com/in/fulyagokalpyavuz/)
+
+- Maggie betz (AT) purdue.edu or [LinkedIn](https://www.linkedin.com/in/margaretbetz/)
+
 
 ## Other SQL databases already on Anvil
 
