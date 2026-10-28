@@ -123,7 +123,7 @@ any rows, use:
 %%sql
 PRAGMA table_info(basics);
 ```
-`NULL` in SQL and `None` in Python both represent the absence of a value. In the `dflt_value` column, both indicate that no default value has been defined.
+`NULL` in SQL and `None` in Python both represent the absence of a value. In the `dflt_value` column, both indicate that no default value has been defined (for this table).
 
 Also the `notnull` column indicates whether NULL values are allowed. 1 means NULL values are not permitted, while 0 means they are allowed.
 
