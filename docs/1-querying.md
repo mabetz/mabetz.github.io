@@ -280,6 +280,8 @@ Example 1. Deliverables
 
 1.2. How many tables are in the database?
 
+Remember: `SELECT tbl_name FROM sqlite_master WHERE type='table';` and replace `tbl_name` with `COUNT(*)`.
+
 1.3. List the names of all the tables in the database.
 
 1.4. Write a SQL query to select all columns from the `People` table, limiting the results to 5 records.
