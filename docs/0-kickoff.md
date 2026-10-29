@@ -138,3 +138,59 @@ database, we recommend having two notebooks open:
         On Mac: cmd + return 
         On Windows: shift + enter
 
+### Using SQLite from the Terminal (Optional)
+
+You can also run SQL queries directly from your computer's terminal without using JupyterLab or R.
+
+**Step 1: Download SQLite**
+
+Visit the [official SQLite download page](https://www.sqlite.org/download.html) and download the **SQLite command-line tools** for your operating system (Windows, macOS, or Linux). Look for the package starting with `sqlite-tools-`, not the source code or DLL files.
+
+Extract the downloaded ZIP file. On Windows, open PowerShell in the extracted folder. On macOS or Linux, open Terminal and make sure `sqlite3` is available in your PATH.
+
+**Step 2: Open a database**
+
+Navigate to the folder containing your SQLite database file and run:
+
+```bash
+sqlite3 mydatabase.db
+```
+
+Replace `mydatabase.db` with the name of your database file. You should now see the SQLite prompt:
+
+```text
+sqlite>
+```
+
+**Step 3: Explore the database**
+
+Try the following commands:
+
+```sql
+.tables
+.schema basics
+```
+
+- `.tables` lists the tables in the database.
+- `.schema basics` displays the structure of the `basics` table.
+
+**Step 4: Run SQL queries**
+
+You can now write SQL queries just as we did in JupyterLab:
+
+```sql
+SELECT primaryTitle, startYear
+FROM basics
+WHERE titleType = 'movie'
+LIMIT 10;
+```
+
+Remember to end SQL statements with a semicolon (`;`).
+
+**Step 5: Exit SQLite**
+
+```text
+.quit
+```
+
+**Note:** SQLite commands beginning with a dot (`.`), such as `.tables` and `.quit`, are specific to the SQLite command-line interface. They are not standard SQL statements.
