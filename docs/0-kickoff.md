@@ -95,7 +95,7 @@ We will use the SQLite database format created from those tsv
 
 We will use the [Lahman Baseball Database](http://seanlahman.com/). The
 SQLite database on Anvil is located at
-`/anvil/projects/tdm/data/lahman/lahman.db`.
+`/anvil/projects/tdm/data/lahman/lahman.db`. (For more, you can read the following page of Sean Lahman: <https://seanlahman.com>)
 
 We will use the Lahman data for all **practice on your own** content.
 
