@@ -28,7 +28,7 @@ JupyterLab on [Anvil](https://www.rcac.purdue.edu/compute/anvil), a supercompute
 
 Shortcut link: https://tinyurl.com/sqlwsds
 
-![WSDS Workshop Attendees and Instructors](WSDS_SQL.jpeg)
+![WSDS Workshop Attendees and Instructors](_images/WSDS_SQL.jpeg)
 
 *WSDS 2026, Cincinnati – Applied SQL for Data Analysis: Workshop attendees and instructors. Shared with the participants' permission.*
 
