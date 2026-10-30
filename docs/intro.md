@@ -4,6 +4,9 @@
 This page was prepared for the 2026 Women in Statistics and Data Science
 conference.
 
+![WSDS Workshop Attendees and Instructors](_images/WSDS_SQL.jpeg)
+
+*WSDS 2026, Cincinnati – Applied SQL for Data Analysis: Workshop attendees and instructors. Shared with the participants' permission.*
 
 ## Course Logistics
 
@@ -27,8 +30,4 @@ long-term growth in data-focused roles.
 JupyterLab on [Anvil](https://www.rcac.purdue.edu/compute/anvil), a supercomputer supported by the National Science Foundation, will be used for this workshop.
 
 Shortcut link: https://tinyurl.com/sqlwsds
-
-![WSDS Workshop Attendees and Instructors](_images/WSDS_SQL.jpeg)
-
-*WSDS 2026, Cincinnati – Applied SQL for Data Analysis: Workshop attendees and instructors. Shared with the participants' permission.*
 
